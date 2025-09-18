@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const RegisterCont = styled.div`
   width: 28.9%;
+  & > h2 {
+    margin-bottom: 48px;
+  }
 `;
 
 export const ImageUpload = styled.div`
@@ -45,4 +48,15 @@ export const UploadText = styled.div`
   & > label > input {
     display: none;
   }
+
+  & > button {
+    margin-left: 15px;
+  }
+`;
+
+export const Avatar = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
 `;

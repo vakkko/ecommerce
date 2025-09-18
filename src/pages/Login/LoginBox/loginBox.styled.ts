@@ -5,6 +5,10 @@ export const LoginCont = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  & > h2 {
+    margin-bottom: 48px;
+  }
 `;
 
 export const ButtonBox = styled.div`

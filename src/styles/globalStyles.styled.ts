@@ -20,6 +20,7 @@ button{
 font-family: "Poppins", sans-serif;
 background-color: transparent;
 border: none;
+cursor: pointer;
 }
 
 input{
