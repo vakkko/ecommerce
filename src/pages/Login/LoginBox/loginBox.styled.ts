@@ -6,3 +6,15 @@ export const LoginCont = styled.div`
   flex-direction: column;
   gap: 24px;
 `;
+
+export const ButtonBox = styled.div`
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  & > button {
+    width: 100%;
+  }
+`;

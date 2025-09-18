@@ -5,4 +5,5 @@ export const Heading = styled.h2`
   font-size: 42px;
   line-height: 100%;
   color: var(--darkBlue);
+  margin-bottom: 24px;
 `;

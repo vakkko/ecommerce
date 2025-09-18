@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const StyledText = styled.div`
   align-self: center;
   display: flex;
+  align-items: center;
   gap: 8px;
   & > p,
   & > span {
-    font-weight: 400;
     font-size: 14px;
     line-height: 100%;
   }

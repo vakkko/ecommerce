@@ -16,17 +16,19 @@ export const InputCont = styled.div`
 
   * > span {
     color: var(--red);
+    font-size: 14px;
   }
 
   & > label {
     position: absolute;
-    top: 10.5px;
+    top: 6.5px;
     left: 12px;
+    color: var(--darkBlue2);
   }
 
   & > img {
     position: absolute;
-    top: 10.5px;
+    top: 11.5px;
     right: 13.65px;
   }
 `;
