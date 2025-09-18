@@ -11,7 +11,7 @@ export default function Header({ text }: HeaderProps) {
       </LogoBox>
       <RegisterBox>
         <img src="./images/user-icon.png" alt="user" />
-        <Link to={"register"}>{text}</Link>
+        <Link to={"/register"}>{text}</Link>
       </RegisterBox>
     </HeaderCont>
   );

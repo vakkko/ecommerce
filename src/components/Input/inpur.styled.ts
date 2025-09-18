@@ -8,7 +8,7 @@ export const InputCont = styled.div`
 
   & > input {
     width: 100%;
-    border: 1px solid var(--gray2);
+    border: 1px solid var(--grey2);
     border-radius: 8px;
     padding: 10.5px 0 10.5px 12px;
     color: var(--darkBlue2);

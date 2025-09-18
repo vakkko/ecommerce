@@ -12,7 +12,7 @@ export default function LoginBox() {
       <Input placeholder="Password" icon />
       <ButtonBox>
         <Button text={"Log in"} />
-        <InfoText />
+        <InfoText url="/register" text="Not a member?" link="Register" />
       </ButtonBox>
     </LoginCont>
   );

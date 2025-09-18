@@ -17,6 +17,7 @@ a{
 }
 
 button{
+font-family: "Poppins", sans-serif;
 background-color: transparent;
 border: none;
 }
@@ -27,7 +28,8 @@ input{
 
 :root{
    --darkBlue: #10151F;
-   --gray2: #E1DFE1;
+   --grey: #F8F6F7;
+   --grey2: #E1DFE1;
    --darkBlue2: #3E424A;
    --red: #FF4000;
 }

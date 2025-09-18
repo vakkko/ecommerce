@@ -4,23 +4,32 @@ import { InputCont } from "./inpur.styled";
 
 export default function Input({ placeholder, icon }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [hideLabel, setHideLabel] = useState<boolean>(true);
+  const [showLabel, setShowLabel] = useState<boolean>(true);
 
   const handleLabelClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
-      setHideLabel(false);
+      setShowLabel(false);
     }
+  };
+
+  const handleInputClick = () => {
+    setShowLabel(false);
   };
 
   return (
     <InputCont>
-      {hideLabel && (
+      {showLabel && (
         <label onClick={handleLabelClick} htmlFor={placeholder}>
           {placeholder} <span>*</span>
         </label>
       )}
-      <input ref={inputRef} name={placeholder} type="text" />
+      <input
+        onClick={handleInputClick}
+        ref={inputRef}
+        name={placeholder}
+        type="text"
+      />
       {icon && <img src="./images/eye.png" alt="eye" />}
     </InputCont>
   );

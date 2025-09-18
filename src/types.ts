@@ -16,3 +16,9 @@ export interface InputProps {
 export interface ButtonProps {
   text: string;
 }
+
+export interface InfoTextProps {
+  text: string;
+  link: string;
+  url: string;
+}
