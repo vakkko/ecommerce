@@ -40,3 +40,10 @@ export interface InfoTextProps {
   link: string;
   url: string;
 }
+
+export type RegisterType = {
+  username: string;
+  email: string;
+  password: string;
+  confirmpassword: string;
+};

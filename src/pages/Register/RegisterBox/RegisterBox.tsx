@@ -12,18 +12,19 @@ import {
   RegisterCont,
   UploadText,
 } from "./registerBox.styled";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
 function RegisterBox() {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
+  const [responseMsg, setResponseMsg] = useState<unknown[] | undefined>();
   const {
     register,
     watch,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange" });
+  } = useForm<FieldValues>({ mode: "onChange" });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -41,8 +42,40 @@ function RegisterBox() {
 
   const password = watch("password");
 
-  const onSubmit = (data) => {
-    console.log("Valid data", data);
+  const onSubmit: SubmitHandler<FieldValues> = async (data): Promise<void> => {
+    const formData = new FormData();
+
+    if (data) {
+      formData.append("email", data.email);
+      formData.append("password_confirmation", data.confirmpassword);
+      formData.append("password", data.password);
+      formData.append("username", data.username);
+
+      if (avatar) {
+        formData.append("avatar", avatar);
+      }
+      try {
+        const response = await fetch(
+          "https://api.redseam.redberryinternship.ge/api/register",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+            },
+            body: formData,
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.errors) {
+          const errorsArr = Object.values(data.errors);
+          setResponseMsg(errorsArr);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
 
   return (
@@ -126,6 +159,12 @@ function RegisterBox() {
           placeholder="Confirm password"
           icon
         />
+        {responseMsg &&
+          responseMsg.map((err, i) => (
+            <p key={i} style={{ color: "var(--red)" }}>
+              {err}
+            </p>
+          ))}
         <ButtonBox>
           <Button handleSubmit={handleSubmit(onSubmit)} text="Register" />
           <InfoText url="/login" text="Already member?" link="Log in" />
