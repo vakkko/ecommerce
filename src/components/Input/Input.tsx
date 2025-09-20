@@ -1,8 +1,15 @@
 import { useRef, useState } from "react";
 import type { InputProps } from "../../types";
-import { InputCont } from "./inpur.styled";
+import { ErrMsg, InputCont } from "./inpur.styled";
 
-export default function Input({ placeholder, icon }: InputProps) {
+export default function Input({
+  placeholder,
+  icon,
+  label,
+  register,
+  validate,
+  errors,
+}: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showLabel, setShowLabel] = useState<boolean>(true);
 
@@ -17,6 +24,9 @@ export default function Input({ placeholder, icon }: InputProps) {
     setShowLabel(false);
   };
 
+  const fieldError = errors && errors[label];
+  const errorMessage = fieldError?.message ? fieldError.message : undefined;
+
   return (
     <InputCont>
       {showLabel && (
@@ -26,11 +36,18 @@ export default function Input({ placeholder, icon }: InputProps) {
       )}
       <input
         onClick={handleInputClick}
-        ref={inputRef}
-        name={placeholder}
-        type="text"
+        {...register(label, validate)}
+        ref={(el) => {
+          inputRef.current = el;
+          register(label).ref(el);
+        }}
       />
       {icon && <img src="./images/eye.png" alt="eye" />}
+      {typeof errorMessage === "string" ? (
+        <ErrMsg>{errorMessage}</ErrMsg>
+      ) : (
+        <p></p>
+      )}
     </InputCont>
   );
 }

@@ -12,6 +12,7 @@ export const InputCont = styled.div`
     border-radius: 8px;
     padding: 10.5px 0 10.5px 12px;
     color: var(--darkBlue2);
+    font-size: 14px;
   }
 
   * > span {
@@ -21,7 +22,7 @@ export const InputCont = styled.div`
 
   & > label {
     position: absolute;
-    top: 6.5px;
+    top: 8.5px;
     left: 12px;
     color: var(--darkBlue2);
   }
@@ -31,4 +32,12 @@ export const InputCont = styled.div`
     top: 11.5px;
     right: 13.65px;
   }
+`;
+
+export const ErrMsg = styled.p`
+  font-weight: 300;
+  font-size: 10px;
+  color: var(--red);
+  line-height: 100%;
+  margin-top: 4px;
 `;

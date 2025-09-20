@@ -24,6 +24,7 @@ cursor: pointer;
 }
 
 input{
+    font-family: "Poppins", sans-serif;
     outline: none;
 }
 
