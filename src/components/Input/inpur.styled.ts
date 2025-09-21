@@ -26,12 +26,6 @@ export const InputCont = styled.div`
     left: 12px;
     color: var(--darkBlue2);
   }
-
-  & > img {
-    position: absolute;
-    top: 11.5px;
-    right: 13.65px;
-  }
 `;
 
 export const ErrMsg = styled.p`
@@ -40,4 +34,10 @@ export const ErrMsg = styled.p`
   color: var(--red);
   line-height: 100%;
   margin-top: 4px;
+`;
+
+export const EyeImg = styled.img`
+  position: absolute;
+  top: 11.5px;
+  right: 13.65px;
 `;

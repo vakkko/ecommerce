@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import type { InputProps } from "../../types";
-import { ErrMsg, InputCont } from "./inpur.styled";
+import { ErrMsg, EyeImg, InputCont } from "./inpur.styled";
 
 export default function Input({
   placeholder,
@@ -12,6 +12,7 @@ export default function Input({
 }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showLabel, setShowLabel] = useState<boolean>(true);
+  const [type, setType] = useState<string | undefined>(undefined);
 
   const handleLabelClick = () => {
     if (inputRef.current) {
@@ -22,6 +23,15 @@ export default function Input({
 
   const handleInputClick = () => {
     setShowLabel(false);
+  };
+
+  const handleEyeClick = () => {
+    const inputType = inputRef.current?.type;
+    if (inputType === "text") {
+      setType("password");
+    } else if (inputType === "password") {
+      setType("text");
+    }
   };
 
   const fieldError = errors && errors[label];
@@ -35,6 +45,7 @@ export default function Input({
         </label>
       )}
       <input
+        type={type ? type : "text"}
         onClick={handleInputClick}
         {...register(label, validate)}
         ref={(el) => {
@@ -42,7 +53,9 @@ export default function Input({
           register(label).ref(el);
         }}
       />
-      {icon && <img src="./images/eye.png" alt="eye" />}
+      {icon && (
+        <EyeImg onClick={handleEyeClick} src="./images/eye.png" alt="eye" />
+      )}
       {typeof errorMessage === "string" ? (
         <ErrMsg>{errorMessage}</ErrMsg>
       ) : (
