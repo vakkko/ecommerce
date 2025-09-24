@@ -38,6 +38,6 @@ export const ErrMsg = styled.p`
 
 export const EyeImg = styled.img`
   position: absolute;
-  top: 11.5px;
+  top: 13.5px;
   right: 13.65px;
 `;

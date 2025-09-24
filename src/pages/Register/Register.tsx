@@ -4,7 +4,7 @@ import RegisterBox from "./RegisterBox/RegisterBox";
 function Register() {
   return (
     <>
-      <AuthContainer text="Log in" child={<RegisterBox />} />
+      <AuthContainer url="/login" text="Log in" child={<RegisterBox />} />
     </>
   );
 }

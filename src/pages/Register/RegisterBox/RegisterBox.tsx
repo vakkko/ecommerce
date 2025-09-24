@@ -13,18 +13,19 @@ import {
   UploadText,
 } from "./registerBox.styled";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 function RegisterBox() {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
-  const [responseMsg, setResponseMsg] = useState<unknown[] | undefined>();
+  const [responseMsg, setResponseMsg] = useState<string[] | undefined>();
   const {
     register,
     watch,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({ mode: "onChange" });
+  const navigate = useNavigate();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -47,9 +48,9 @@ function RegisterBox() {
 
     if (data) {
       formData.append("email", data.email);
-      formData.append("password_confirmation", data.confirmpassword);
-      formData.append("password", data.password);
       formData.append("username", data.username);
+      formData.append("password", data.password);
+      formData.append("password_confirmation", data.confirmpassword);
 
       if (avatar) {
         formData.append("avatar", avatar);
@@ -66,10 +67,13 @@ function RegisterBox() {
           }
         );
 
-        const data = await response.json();
+        const result = await response.json();
 
-        if (data.errors) {
-          const errorsArr = Object.values(data.errors);
+        if (response.ok && result.token) {
+          localStorage.setItem("token", result.token);
+          navigate("/login");
+        } else {
+          const errorsArr: string[] = Object.values(result.errors || {});
           setResponseMsg(errorsArr);
         }
       } catch (err) {

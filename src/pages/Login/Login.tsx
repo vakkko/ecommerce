@@ -4,7 +4,7 @@ import LoginBox from "./LoginBox/LoginBox";
 export default function Login() {
   return (
     <>
-      <AuthContainer child={<LoginBox />} text={"Register"} />
+      <AuthContainer url="/register" child={<LoginBox />} text={"Register"} />
     </>
   );
 }

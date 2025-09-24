@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import type { HeaderProps } from "../../types";
 import { HeaderCont, LogoBox, RegisterBox } from "./header.styled";
 
-export default function Header({ text }: HeaderProps) {
+export default function Header({ text, url }: HeaderProps) {
   return (
     <HeaderCont>
       <LogoBox>
@@ -11,7 +11,7 @@ export default function Header({ text }: HeaderProps) {
       </LogoBox>
       <RegisterBox>
         <img src="./images/user-icon.png" alt="user" />
-        <Link to={"/register"}>{text}</Link>
+        <Link to={url}>{text}</Link>
       </RegisterBox>
     </HeaderCont>
   );

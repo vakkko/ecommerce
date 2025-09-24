@@ -7,10 +7,13 @@ import type {
 
 export interface HeaderProps {
   text: string;
+  url: string;
 }
 
-export interface AuthContainerProps extends HeaderProps {
+export interface AuthContainerProps {
   child: ReactNode;
+  text: string;
+  url: string;
 }
 
 export interface InputProps {
