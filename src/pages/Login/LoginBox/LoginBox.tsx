@@ -34,9 +34,12 @@ export default function LoginBox() {
         }
       );
 
+      const result = await response.json();
+
       if (response.ok) {
         navigate("/products");
       } else {
+        alert(result.message);
         throw new Error("Invalid username or password");
       }
     } catch (err) {
@@ -78,6 +81,7 @@ export default function LoginBox() {
         placeholder="Password"
         icon
       />
+
       <ButtonBox>
         <Button handleSubmit={handleSubmit(onSubmit)} text={"Log in"} />
         <InfoText url="/register" text="Not a member?" link="Register" />
