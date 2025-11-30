@@ -4,20 +4,13 @@ import HeadingText from "../../../components/HeadingText/HeadingText";
 import InfoText from "../../../components/InfoText/InfoText";
 import Input from "../../../components/Input/Input";
 import { ButtonBox } from "../../Login/LoginBox/loginBox.styled";
-import {
-  Avatar,
-  Circle,
-  ImageUpload,
-  InfoBox,
-  RegisterCont,
-  UploadText,
-} from "./registerBox.styled";
+import { InfoBox, RegisterCont } from "./registerBox.styled";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
+import ImageUpload from "./ImageUpload/ImageUpload";
 
 function RegisterBox() {
   const [avatar, setAvatar] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string>("");
   const [responseMsg, setResponseMsg] = useState<string[] | undefined>();
   const {
     register,
@@ -25,21 +18,8 @@ function RegisterBox() {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({ mode: "onChange" });
+
   const navigate = useNavigate();
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setAvatar(file);
-
-      const objectUrl = URL.createObjectURL(file);
-      setPreview(objectUrl);
-    }
-  };
-
-  const handleRemoveClick = () => {
-    setPreview("");
-  };
 
   const password = watch("password");
 
@@ -55,6 +35,7 @@ function RegisterBox() {
       if (avatar) {
         formData.append("avatar", avatar);
       }
+
       try {
         const response = await fetch(
           "https://api.redseam.redberryinternship.ge/api/register",
@@ -86,22 +67,7 @@ function RegisterBox() {
     <RegisterCont>
       <HeadingText text="Registration" />
       <InfoBox>
-        <ImageUpload>
-          <Circle>
-            {!preview ? (
-              <img src="./images/camera.png" alt="camera" />
-            ) : (
-              <Avatar src={preview} alt="avatar" />
-            )}
-          </Circle>
-          <UploadText>
-            <label>
-              Upload {preview ? "new" : "image"}
-              <input onChange={handleFileChange} type="file" />
-            </label>
-            {preview && <button onClick={handleRemoveClick}>Remove</button>}
-          </UploadText>
-        </ImageUpload>
+        <ImageUpload setAvatar={setAvatar} />
         <Input
           validate={{
             required: "Invalid Username input",
