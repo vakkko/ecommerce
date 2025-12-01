@@ -12,7 +12,9 @@ export default function Input<T extends FieldValues>({
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showLabel, setShowLabel] = useState<boolean>(true);
-  const [type, setType] = useState<string | undefined>(undefined);
+  const [type, setType] = useState<string | undefined>(() =>
+    icon ? "password" : undefined
+  );
 
   const handleLabelClick = () => {
     if (inputRef.current) {
@@ -45,7 +47,7 @@ export default function Input<T extends FieldValues>({
         </label>
       )}
       <input
-        type={type ? type : "text"}
+        type={type}
         onClick={handleInputClick}
         {...register(label)}
         ref={(el) => {
