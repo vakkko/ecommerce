@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Button from "../../../components/Button/Button";
 import HeadingText from "../../../components/HeadingText/HeadingText";
 import InfoText from "../../../components/InfoText/InfoText";
@@ -9,19 +7,16 @@ import ImageUpload from "./ImageUpload/ImageUpload";
 
 import { InfoBox, RegisterCont } from "./registerBox.styled";
 
-import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { registerSchema } from "../../../validations/schemas/schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useNavigate } from "react-router";
-
 import type { RegisterFormData } from "./registerBox.types";
 
-function RegisterBox() {
-  const [avatar, setAvatar] = useState<File | null>(null);
-  const [responseMsg, setResponseMsg] = useState<string[] | undefined>();
+import useRegister from "../../../hooks/useRegister";
 
+function RegisterBox() {
   const {
     register,
     handleSubmit,
@@ -31,47 +26,7 @@ function RegisterBox() {
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
-
-  const onSubmit: SubmitHandler<FieldValues> = async (data): Promise<void> => {
-    const formData = new FormData();
-
-    if (data) {
-      formData.append("email", data.email);
-      formData.append("username", data.username);
-      formData.append("password", data.password);
-      formData.append("password_confirmation", data.confirmpassword);
-
-      if (avatar) {
-        formData.append("avatar", avatar);
-      }
-
-      try {
-        const response = await fetch(
-          "https://api.redseam.redberryinternship.ge/api/register",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-            },
-            body: formData,
-          }
-        );
-
-        const result = await response.json();
-
-        if (response.ok && result.token) {
-          localStorage.setItem("token", result.token);
-          navigate("/login");
-        } else {
-          const errorsArr: string[] = Object.values(result.errors || {});
-          setResponseMsg(errorsArr);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  };
+  const { onSubmit, setAvatar, responseMsg } = useRegister();
 
   return (
     <RegisterCont>

@@ -4,3 +4,8 @@ export interface RegisterFormData {
   password: string;
   confirmpassword: string;
 }
+
+export type RTKError = {
+  status: number;
+  data: { errors?: Record<string, string> };
+};

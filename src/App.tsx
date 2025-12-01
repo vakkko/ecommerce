@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Products from "./pages/Products/Products";
-import store from "./app/store";
+import { store } from "./app/store";
 import { Provider } from "react-redux";
 
 function App() {
