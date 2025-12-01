@@ -5,13 +5,16 @@ import InfoText from "../../../components/InfoText/InfoText";
 import Input from "../../../components/Input/Input";
 import { ButtonBox, LoginCont } from "./loginBox.styled";
 import { useNavigate } from "react-router";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../../validations/schemas/schemas";
+import type { LoginFormData } from "./loginBox.types";
 
 export default function LoginBox() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<LoginFormData>({ resolver: yupResolver(loginSchema) });
 
   const navigate = useNavigate();
 
@@ -52,30 +55,12 @@ export default function LoginBox() {
       <HeadingText text="Log in" />
       <Input
         errors={errors}
-        validate={{
-          required: "Email is required",
-          pattern: {
-            value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-            message: "Please enter a valid email address",
-          },
-        }}
         register={register}
         label="email"
         placeholder="Email"
       />
       <Input
         errors={errors}
-        validate={{
-          required: "Password is required",
-          pattern: {
-            value: /^\S{3,}$/,
-            message: "Password cannot contain spaces",
-          },
-          minLength: {
-            value: 3,
-            message: "Password should be more than 3 characters",
-          },
-        }}
         register={register}
         label="password"
         placeholder="Password"

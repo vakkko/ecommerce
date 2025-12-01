@@ -5,7 +5,7 @@ import {
   Avatar,
   UploadText,
 } from "./imageUpload.styled";
-import type { ImageUploadProps } from "./ImageUpload.types";
+import type { ImageUploadProps } from "./imageUpload.types";
 
 export default function ImageUpload({ setAvatar }: ImageUploadProps) {
   const [preview, setPreview] = useState<string>("");

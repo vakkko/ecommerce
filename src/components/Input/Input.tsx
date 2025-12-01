@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
-import type { InputProps } from "../../types";
+import type { InputProps } from "./input.types";
 import { ErrMsg, EyeImg, InputCont } from "./inpur.styled";
+import type { FieldValues } from "react-hook-form";
 
-export default function Input({
+export default function Input<T extends FieldValues>({
   placeholder,
   icon,
   label,
   register,
-  validate,
   errors,
-}: InputProps) {
+}: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showLabel, setShowLabel] = useState<boolean>(true);
   const [type, setType] = useState<string | undefined>(undefined);
@@ -47,7 +47,7 @@ export default function Input({
       <input
         type={type ? type : "text"}
         onClick={handleInputClick}
-        {...register(label, validate)}
+        {...register(label)}
         ref={(el) => {
           inputRef.current = el;
           register(label).ref(el);

@@ -1,27 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import Button from "../../../components/Button/Button";
 import HeadingText from "../../../components/HeadingText/HeadingText";
 import InfoText from "../../../components/InfoText/InfoText";
 import Input from "../../../components/Input/Input";
 import { ButtonBox } from "../../Login/LoginBox/loginBox.styled";
-import { InfoBox, RegisterCont } from "./registerBox.styled";
-import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router";
 import ImageUpload from "./ImageUpload/ImageUpload";
+
+import { InfoBox, RegisterCont } from "./registerBox.styled";
+
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+
+import { registerSchema } from "../../../validations/schemas/schemas";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { useNavigate } from "react-router";
+
+import type { RegisterFormData } from "./registerBox.types";
 
 function RegisterBox() {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [responseMsg, setResponseMsg] = useState<string[] | undefined>();
+
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({ mode: "onChange" });
+  } = useForm<RegisterFormData>({
+    resolver: yupResolver(registerSchema),
+    mode: "onChange",
+  });
 
   const navigate = useNavigate();
-
-  const password = watch("password");
 
   const onSubmit: SubmitHandler<FieldValues> = async (data): Promise<void> => {
     const formData = new FormData();
@@ -69,14 +79,6 @@ function RegisterBox() {
       <InfoBox>
         <ImageUpload setAvatar={setAvatar} />
         <Input
-          validate={{
-            required: "Invalid Username input",
-            pattern: {
-              value: /^[A-Za-z0-9!@#$%^&*._-]+$/,
-              message:
-                "Username can only contain letters, numbers, and special characters",
-            },
-          }}
           register={register}
           label="username"
           placeholder="Username"
@@ -84,30 +86,12 @@ function RegisterBox() {
         />
         <Input
           errors={errors}
-          validate={{
-            required: "Email is required",
-            pattern: {
-              value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-              message: "Please enter a valid email address",
-            },
-          }}
           register={register}
           label="email"
           placeholder="Email"
         />
         <Input
           errors={errors}
-          validate={{
-            required: "Password is required",
-            pattern: {
-              value: /^\S{3,}$/,
-              message: "Password cannot contain spaces",
-            },
-            minLength: {
-              value: 3,
-              message: "Password should be more than 3 characters",
-            },
-          }}
           register={register}
           label="password"
           placeholder="Password"
@@ -115,15 +99,6 @@ function RegisterBox() {
         />
         <Input
           errors={errors}
-          validate={{
-            required: "Confirm password is required",
-            validate: (value: string) => {
-              if (value !== password) {
-                return "Passwords do not match";
-              }
-              return true;
-            },
-          }}
           register={register}
           label="confirmpassword"
           placeholder="Confirm password"
