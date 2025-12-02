@@ -47,6 +47,7 @@ export default function Input<T extends FieldValues>({
         </label>
       )}
       <input
+        data-testid="input"
         type={type}
         onClick={handleInputClick}
         {...register(label)}
@@ -58,11 +59,7 @@ export default function Input<T extends FieldValues>({
       {icon && (
         <EyeImg onClick={handleEyeClick} src="./images/eye.png" alt="eye" />
       )}
-      {typeof errorMessage === "string" ? (
-        <ErrMsg>{errorMessage}</ErrMsg>
-      ) : (
-        <p></p>
-      )}
+      {typeof errorMessage === "string" && <ErrMsg>{errorMessage}</ErrMsg>}
     </InputCont>
   );
 }
