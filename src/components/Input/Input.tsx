@@ -36,6 +36,12 @@ export default function Input<T extends FieldValues>({
     }
   };
 
+  const handleInputBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+      setShowLabel(true);
+    }
+  };
+
   const fieldError = errors && errors[label];
   const errorMessage = fieldError?.message ? fieldError.message : undefined;
 
@@ -55,6 +61,7 @@ export default function Input<T extends FieldValues>({
           inputRef.current = el;
           register(label).ref(el);
         }}
+        onBlur={handleInputBlur}
       />
       {icon && (
         <EyeImg onClick={handleEyeClick} src="./images/eye.png" alt="eye" />

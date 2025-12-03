@@ -5,6 +5,7 @@ export const InputCont = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: 50px;
 
   & > input {
     width: 100%;
@@ -33,11 +34,12 @@ export const ErrMsg = styled.p`
   font-size: 10px;
   color: var(--red);
   line-height: 100%;
-  margin-top: 4px;
+  margin-top: 10px;
 `;
 
 export const EyeImg = styled.img`
   position: absolute;
   top: 13.5px;
   right: 13.65px;
+  cursor: pointer;
 `;
