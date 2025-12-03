@@ -4,7 +4,13 @@ export const LoginCont = styled.div`
   width: 28.9%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 240px;
+  }
 
   & > h2 {
     margin-bottom: 48px;

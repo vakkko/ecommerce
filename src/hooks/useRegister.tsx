@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useRegisterUserMutation } from "../app/services/registerApi";
+import { useRegisterUserMutation } from "../app/services/authApi";
 import type {
   RegisterFormData,
   RTKError,
@@ -18,26 +18,24 @@ const useRegister = () => {
   ): Promise<void> => {
     const formData = new FormData();
 
-    if (data) {
-      formData.append("email", data.email);
-      formData.append("username", data.username);
-      formData.append("password", data.password);
-      formData.append("password_confirmation", data.confirmpassword);
+    formData.append("email", data.email);
+    formData.append("username", data.username);
+    formData.append("password", data.password);
+    formData.append("password_confirmation", data.confirmpassword);
 
-      if (avatar) {
-        formData.append("avatar", avatar);
-      }
+    if (avatar) {
+      formData.append("avatar", avatar);
+    }
 
-      try {
-        const result = await registerUser(formData).unwrap();
+    try {
+      const result = await registerUser(formData).unwrap();
 
-        localStorage.setItem("token", result.token);
-        navigate("/login");
-      } catch (error: unknown) {
-        const err = error as RTKError;
-        const errorsArr: string[] = Object.values(err?.data?.errors || {});
-        setResponseMsg(errorsArr);
-      }
+      localStorage.setItem("token", result.token);
+      navigate("/login");
+    } catch (error: unknown) {
+      const err = error as RTKError;
+      const errorsArr: string[] = Object.values(err?.data?.errors || {});
+      setResponseMsg(errorsArr);
     }
   };
 

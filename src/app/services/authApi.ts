@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const registerApiSlice = createApi({
+export const authApiSlice = createApi({
   reducerPath: "register",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.redseam.redberryinternship.ge/api",
@@ -13,7 +13,15 @@ export const registerApiSlice = createApi({
         body: userData,
       }),
     }),
+
+    loginUser: builder.mutation({
+      query: (userData) => ({
+        url: "/login",
+        method: "POST",
+        body: userData,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterUserMutation } = registerApiSlice;
+export const { useRegisterUserMutation, useLoginUserMutation } = authApiSlice;
