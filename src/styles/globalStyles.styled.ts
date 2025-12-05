@@ -1,6 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+:root{
+   --darkBlue: #10151F;
+   --grey: #F8F6F7;
+   --grey2: #E1DFE1;
+   --darkBlue2: #3E424A;
+   --red: #FF4000;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -28,13 +36,10 @@ input{
     outline: none;
 }
 
-:root{
-   --darkBlue: #10151F;
-   --grey: #F8F6F7;
-   --grey2: #E1DFE1;
-   --darkBlue2: #3E424A;
-   --red: #FF4000;
+li{
+    list-style-type: none;
 }
+
 `;
 
 export default GlobalStyles;

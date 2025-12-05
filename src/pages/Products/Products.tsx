@@ -1,7 +1,8 @@
 import Header from "../../components/Header/Header";
 import HeaderWithFilter from "./HeaderWithFilter/HeaderWithFilter";
-import { ProductsContainer } from "./products.styled";
 import ProductsList from "./ProductsList/ProductsList";
+
+import { ProductsContainer } from "./products.styled";
 
 function Products() {
   return (
