@@ -4,7 +4,7 @@ export const HeaderCont = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 100px 28px 128px;
+  padding: 28px 100px 28px;
 `;
 
 export const LogoBox = styled.div`
