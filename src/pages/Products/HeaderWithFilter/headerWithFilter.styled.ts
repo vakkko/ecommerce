@@ -4,6 +4,7 @@ export const HeaderWithFilterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 32px;
   & > h1 {
     font-weight: 600;
     font-size: 42px;

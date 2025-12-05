@@ -1,4 +1,5 @@
 import Filters from "./Filters/Filters";
+
 import { HeaderWithFilterContainer } from "./headerWithFilter.styled";
 
 export default function HeaderWithFilter() {
