@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useRegisterUserMutation } from "../app/services/authApi";
+import { useRegisterUserMutation } from "../store/services/authApi";
 import type {
   RegisterFormData,
   RTKError,
@@ -31,7 +31,7 @@ const useRegister = () => {
       const result = await registerUser(formData).unwrap();
 
       localStorage.setItem("token", result.token);
-      navigate("/login");
+      navigate("/prooducts/1");
     } catch (error: unknown) {
       const err = error as RTKError;
       const errorsArr: string[] = Object.values(err?.data?.errors || {});

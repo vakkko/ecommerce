@@ -1,14 +1,12 @@
 import React from "react";
 
-import { useGetProductsQuery } from "../../../app/services/productApi/productApi";
-
 import Product from "./Product/Product";
+
+import type { ProductsListProps } from "./productsList.types";
 
 import { ProductsListContainer } from "./products.styled";
 
-export default function ProductsList() {
-  const { data } = useGetProductsQuery();
-
+export default function ProductsList({ data }: ProductsListProps) {
   return (
     <ProductsListContainer>
       {data &&
