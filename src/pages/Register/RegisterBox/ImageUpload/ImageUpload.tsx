@@ -27,7 +27,7 @@ export default function ImageUpload({ setAvatar }: ImageUploadProps) {
     <ImageUploadContainer>
       <Circle>
         {!preview ? (
-          <img src="./images/camera.png" alt="camera" />
+          <img src="/images/camera.png" alt="camera" />
         ) : (
           <Avatar src={preview} alt="avatar" />
         )}

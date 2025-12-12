@@ -21,12 +21,12 @@ export default function Filters() {
     <>
       <FilterBox>
         <button onClick={handleFilterClick}>
-          <img src="./images/adjustments-horizontal.svg" alt="adjustment" />
+          <img src="/images/adjustments-horizontal.svg" alt="adjustment" />
           Filter
         </button>
         <button onClick={handleSortByClick}>
           Sort by
-          <img src="./images/down-arrow.svg" alt="down-arrow" />
+          <img src="/images/down-arrow.svg" alt="down-arrow" />
         </button>
       </FilterBox>
       {showPriceFilter && <PriceFilter />}

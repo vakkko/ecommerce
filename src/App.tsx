@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Products from "./pages/Products/Products";
-import { store } from "./app/store";
+import { store } from "./store/store";
 import { Provider } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
@@ -17,7 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/products"
+            path="/products/:page"
             element={
               <ProtectedRoute isAuth={authorized}>
                 <Products />

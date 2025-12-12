@@ -8,8 +8,8 @@ export const productApiSlice = createApi({
     baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<ProductsApiResponse, void>({
-      query: () => "/products",
+    getProducts: builder.query<ProductsApiResponse, { page: number }>({
+      query: ({ page }) => `/products?page=${page}`,
     }),
   }),
 });

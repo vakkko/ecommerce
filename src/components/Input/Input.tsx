@@ -64,7 +64,7 @@ export default function Input<T extends FieldValues>({
         onBlur={handleInputBlur}
       />
       {icon && (
-        <EyeImg onClick={handleEyeClick} src="./images/eye.png" alt="eye" />
+        <EyeImg onClick={handleEyeClick} src="/images/eye.png" alt="eye" />
       )}
       {typeof errorMessage === "string" && <ErrMsg>{errorMessage}</ErrMsg>}
     </InputCont>

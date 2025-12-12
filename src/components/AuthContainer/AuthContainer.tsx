@@ -11,7 +11,7 @@ export default function AuthContainer({
     <>
       <Header url={url} text={text} />
       <MainContainer>
-        <img src="./images/cover.png" alt="man and woman dressed classy" />
+        <img src="/images/cover.png" alt="man and woman dressed classy" />
         {child}
       </MainContainer>
     </>
