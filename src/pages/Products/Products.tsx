@@ -18,7 +18,11 @@ function Products() {
     <>
       <Header text="products" url="/products" />
       <ProductsContainer>
-        <HeaderWithFilter />
+        <HeaderWithFilter
+          from={data?.meta.from}
+          to={data?.meta.to}
+          total={data?.meta.total}
+        />
         <ProductsList data={data} />
         <Pagination
           currentPage={data?.meta.current_page}
