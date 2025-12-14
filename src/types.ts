@@ -1,10 +1,5 @@
 import type { BaseSyntheticEvent, ReactNode } from "react";
 
-export interface HeaderProps {
-  text: string;
-  url: string;
-}
-
 export interface AuthContainerProps {
   child: ReactNode;
   text: string;

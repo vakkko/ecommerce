@@ -1,8 +1,14 @@
 import { Link } from "react-router";
-import type { HeaderProps } from "../../types";
-import { HeaderCont, LogoBox, RegisterBox } from "./header.styled";
+import { useSelector } from "react-redux";
 
-export default function Header({ text, url }: HeaderProps) {
+import type { HeaderProps } from "./header.types";
+
+import { selectAvatar } from "../../store/selectores/authSelector";
+
+import { AvatarImg, HeaderCont, LogoBox, RegisterBox } from "./header.styled";
+
+export default function Header({ text, url, productsPage }: HeaderProps) {
+  const avatar = useSelector(selectAvatar);
   return (
     <HeaderCont>
       <LogoBox>
@@ -10,8 +16,17 @@ export default function Header({ text, url }: HeaderProps) {
         <h1>RedSeam Clothing</h1>
       </LogoBox>
       <RegisterBox>
-        <img src="/images/user-icon.png" alt="user" />
-        <Link to={url}>{text}</Link>
+        {productsPage ? (
+          <>
+            <img src="/images/cart.svg" alt="cart" />
+            {avatar && <AvatarImg src={avatar} alt="user" />}
+          </>
+        ) : (
+          <>
+            <img src="/images/user-icon.png" alt="user" />
+            {url && <Link to={url}>{text}</Link>}
+          </>
+        )}
       </RegisterBox>
     </HeaderCont>
   );

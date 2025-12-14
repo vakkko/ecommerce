@@ -16,7 +16,7 @@ function Products() {
 
   return (
     <>
-      <Header text="products" url="/products" />
+      <Header productsPage text="products" />
       <ProductsContainer>
         <HeaderWithFilter
           from={data?.meta.from}
