@@ -12,3 +12,8 @@ export const lengthMessages = {
 };
 
 export const unmatchedPassword = "Password do not match";
+
+export const priceFilterMissmatch =
+  "From price must be less than or equal to To price";
+
+export const numberType = (field: string) => `${field} field must be a number`;

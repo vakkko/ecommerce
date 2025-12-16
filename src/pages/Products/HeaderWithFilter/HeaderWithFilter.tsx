@@ -7,6 +7,7 @@ export default function HeaderWithFilter({
   from,
   to,
   total,
+  setFilterByPrice,
 }: HeaderWithFilterProps) {
   return (
     <HeaderWithFilterContainer>
@@ -16,7 +17,7 @@ export default function HeaderWithFilter({
           Showing {from}-{to} of {total} results
         </p>
         <img src="/images/small-stick.svg" alt="small vertical line" />
-        <Filters />
+        <Filters setFilterByPrice={setFilterByPrice} />
       </div>
     </HeaderWithFilterContainer>
   );

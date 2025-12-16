@@ -4,6 +4,8 @@ import {
   invalidPattern,
   lengthMessages,
   unmatchedPassword,
+  priceFilterMissmatch,
+  numberType,
 } from "../messages/validationMessages";
 import { PASSWORD_VALIDATION, USERNAME_VALIDATION } from "../regex/regex";
 
@@ -40,3 +42,16 @@ export const loginSchema = yup.object({
   email: emailSchema,
   password: passwordSchema,
 });
+
+export const priceSchema = (value: string) =>
+  yup.number().typeError(numberType(value));
+
+export const filterByPriceSchema = yup
+  .object({
+    from: priceSchema("From"),
+    to: priceSchema("To"),
+  })
+  .test(priceFilterMissmatch, (values) => {
+    if (values.from == null || values.to == null) return;
+    return values.from <= values.to;
+  });
