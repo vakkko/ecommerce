@@ -17,7 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/products/:page"
+            path="/products"
             element={
               <ProtectedRoute isAuth={authorized}>
                 <Products />
