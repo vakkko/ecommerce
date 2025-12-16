@@ -8,8 +8,11 @@ import Pagination from "./Pagination/Pagination";
 import ProductsList from "./ProductsList/ProductsList";
 
 import { ProductsContainer } from "./products.styled";
+import { useState } from "react";
 
 function Products() {
+  const [filterByPrice, setFilterByPrice] = useState({ from: "", to: "" });
+
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page"));
   const { data } = useGetProductsQuery({ page: currentPage });
@@ -22,6 +25,7 @@ function Products() {
           from={data?.meta.from}
           to={data?.meta.to}
           total={data?.meta.total}
+          setFilterByPrice={setFilterByPrice}
         />
         <ProductsList data={data} />
         <Pagination
