@@ -21,7 +21,7 @@ const useLogin = () => {
     try {
       const response = await loginUser(formData).unwrap();
       dispatch(setAvatarImg(response.user.avatar));
-      navigate("/products/1");
+      navigate("/products?page=1");
     } catch (error: unknown) {
       const err = error as LoginErr;
       setLoginError(err.data.message);
