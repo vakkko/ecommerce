@@ -17,15 +17,20 @@ export const PriceFilterBox = styled.div`
     color: var(--darkBlue);
   }
 
-  & > div {
-    margin: 20px 0 10px;
-    display: flex;
-    gap: 10px;
-  }
-
   & > button {
     align-self: flex-end;
     width: 124px;
     height: 41px;
+  }
+`;
+
+export const InputError = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    margin: 20px 0 10px;
+    display: flex;
+    gap: 10px;
   }
 `;
