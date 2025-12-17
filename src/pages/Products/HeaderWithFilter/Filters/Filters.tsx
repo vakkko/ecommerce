@@ -2,11 +2,8 @@ import { useState } from "react";
 import { FilterBox } from "./filter.styled";
 import PriceFilter from "./PriceFilter/PriceFilter";
 import SortBy from "./SortBy/SortBy";
-import type { HeaderWithFilterProps } from "../headerWithFilter.types";
 
-export default function Filters({
-  setFilterByPrice,
-}: Pick<HeaderWithFilterProps, "setFilterByPrice">) {
+export default function Filters() {
   const [showPriceFilter, setShowPriceFilter] = useState<boolean>(false);
   const [showSortBy, setShowSortBy] = useState<boolean>(false);
 
@@ -32,7 +29,9 @@ export default function Filters({
           <img src="/images/down-arrow.svg" alt="down-arrow" />
         </button>
       </FilterBox>
-      {showPriceFilter && <PriceFilter setFilterByPrice={setFilterByPrice} />}
+      {showPriceFilter && (
+        <PriceFilter setShowPriceFilter={setShowPriceFilter} />
+      )}
       {showSortBy && <SortBy />}
     </>
   );

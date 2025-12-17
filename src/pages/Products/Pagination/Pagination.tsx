@@ -17,13 +17,13 @@ export default function Pagination({ currentPage, lastPage }: PaginationProps) {
     <PaginationNav>
       <ul>
         <li>
-          <Link to={`/products/${isFirstPage}`}>
+          <Link to={`/products?page=${isFirstPage}`}>
             <img src="/images/left-arrow.svg" alt="left arrow" />
           </Link>
         </li>
         {currentPage > 1 && (
           <li>
-            <Link to={`/products/${isFirstPage}`}>{previousPage}</Link>
+            <Link to={`/products?page=${isFirstPage}`}>{previousPage}</Link>
           </li>
         )}
         {currentPage !== lastPage && (
@@ -33,15 +33,15 @@ export default function Pagination({ currentPage, lastPage }: PaginationProps) {
         )}
         {currentPage !== lastPage - 1 && currentPage < lastPage && (
           <li>
-            <Link to={`/products/${isLastPage}`}>{nextPage}</Link>
+            <Link to={`/products?page=${isLastPage}`}>{nextPage}</Link>
           </li>
         )}
         <li>{showDots && <span>...</span>}</li>
         <li>
-          <Link to={`/products/${lastPage}`}>{lastPage}</Link>
+          <Link to={`/products?page=${lastPage}`}>{lastPage}</Link>
         </li>
         <li>
-          <Link to={`/products/${isLastPage}`}>
+          <Link to={`/products?page=${isLastPage}`}>
             <img src="/images/right-arrow.svg" alt="right arrow" />
           </Link>
         </li>

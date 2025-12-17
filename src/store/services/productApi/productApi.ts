@@ -8,8 +8,17 @@ export const productApiSlice = createApi({
     baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<ProductsApiResponse, { page: number }>({
-      query: ({ page }) => `/products?page=${page}`,
+    getProducts: builder.query<
+      ProductsApiResponse,
+      { page: number; from: number | undefined; to: number | undefined }
+    >({
+      query: ({ page, from, to }) => {
+        let url = `/products?page=${page}`;
+        if (from !== undefined) url += `&filter%5Bprice_from%5D=${from}`;
+        if (to !== undefined) url += `&filter%5Bprice_to%5D=${to}`;
+
+        return url;
+      },
     }),
   }),
 });
