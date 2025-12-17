@@ -1,11 +1,13 @@
-import { Link } from "react-router";
+import { useSearchParams } from "react-router";
 import type { PaginationProps } from "./pagination.types";
 import { ActiveCurrentPage, PaginationNav } from "./pagination.styled";
 
 export default function Pagination({ currentPage, lastPage }: PaginationProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
   if (currentPage == null || lastPage == null) {
     return null;
   }
+
   const showDots = lastPage - currentPage >= 3;
   const previousPage = currentPage - 1;
   const nextPage = currentPage + 1;
@@ -13,37 +15,52 @@ export default function Pagination({ currentPage, lastPage }: PaginationProps) {
   const isFirstPage = currentPage > 1 ? currentPage - 1 : currentPage;
   const isLastPage = currentPage < lastPage ? currentPage + 1 : currentPage;
 
+  const goToPage = (newPage: number) => {
+    searchParams.set("page", String(newPage));
+    setSearchParams(searchParams);
+  };
+
+  const onLastPage = currentPage === lastPage;
+
   return (
     <PaginationNav>
       <ul>
         <li>
-          <Link to={`/products?page=${isFirstPage}`}>
+          <button onClick={() => goToPage(isFirstPage)}>
             <img src="/images/left-arrow.svg" alt="left arrow" />
-          </Link>
+          </button>
         </li>
         {currentPage > 1 && (
           <li>
-            <Link to={`/products?page=${isFirstPage}`}>{previousPage}</Link>
+            <button onClick={() => goToPage(isFirstPage)}>
+              {previousPage}
+            </button>
           </li>
         )}
-        {currentPage !== lastPage && (
-          <ActiveCurrentPage>
-            <span>{currentPage}</span>
-          </ActiveCurrentPage>
-        )}
+
+        <ActiveCurrentPage>
+          <span>{currentPage}</span>
+        </ActiveCurrentPage>
+
         {currentPage !== lastPage - 1 && currentPage < lastPage && (
           <li>
-            <Link to={`/products?page=${isLastPage}`}>{nextPage}</Link>
+            <button onClick={() => goToPage(isLastPage)}>{nextPage}</button>
           </li>
         )}
-        <li>{showDots && <span>...</span>}</li>
+        {showDots && (
+          <li>
+            <span>...</span>
+          </li>
+        )}
+        {!onLastPage && (
+          <li>
+            <button onClick={() => goToPage(lastPage)}>{lastPage}</button>
+          </li>
+        )}
         <li>
-          <Link to={`/products?page=${lastPage}`}>{lastPage}</Link>
-        </li>
-        <li>
-          <Link to={`/products?page=${isLastPage}`}>
+          <button onClick={() => goToPage(isLastPage)}>
             <img src="/images/right-arrow.svg" alt="right arrow" />
-          </Link>
+          </button>
         </li>
       </ul>
     </PaginationNav>
