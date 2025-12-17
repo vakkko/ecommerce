@@ -16,7 +16,7 @@ export const PaginationNav = styled.nav`
     border-radius: 4px;
   }
 
-  & > ul > li > a,
+  & > ul > li > button,
   & > ul > li:not(:first-child):not(:last-child) {
     display: flex;
     align-items: center;
