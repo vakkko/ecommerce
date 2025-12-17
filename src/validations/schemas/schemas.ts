@@ -48,8 +48,8 @@ export const priceSchema = (value: string) =>
 
 export const filterByPriceSchema = yup
   .object({
-    from: priceSchema("From"),
-    to: priceSchema("To"),
+    from: priceSchema("From").notRequired(),
+    to: priceSchema("To").notRequired(),
   })
   .test(priceFilterMissmatch, (values) => {
     if (values.from == null || values.to == null) return;

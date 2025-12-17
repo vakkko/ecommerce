@@ -9,9 +9,13 @@ import ProductsList from "./ProductsList/ProductsList";
 
 import { ProductsContainer } from "./products.styled";
 import { useState } from "react";
+import type { PriceFilter } from "./products.types";
 
 function Products() {
-  const [filterByPrice, setFilterByPrice] = useState({ from: "", to: "" });
+  const [filterByPrice, setFilterByPrice] = useState<PriceFilter>({
+    from: undefined,
+    to: undefined,
+  });
 
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page"));
