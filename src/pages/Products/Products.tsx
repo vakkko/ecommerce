@@ -8,18 +8,19 @@ import Pagination from "./Pagination/Pagination";
 import ProductsList from "./ProductsList/ProductsList";
 
 import { ProductsContainer } from "./products.styled";
-import { useState } from "react";
-import type { PriceFilter } from "./products.types";
 
 function Products() {
-  const [filterByPrice, setFilterByPrice] = useState<PriceFilter>({
-    from: undefined,
-    to: undefined,
-  });
-
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page"));
-  const { data } = useGetProductsQuery({ page: currentPage });
+  const from = searchParams.get("from")
+    ? Number(searchParams.get("from"))
+    : undefined;
+
+  const to = searchParams.get("to")
+    ? Number(searchParams.get("to"))
+    : undefined;
+
+  const { data } = useGetProductsQuery({ page: currentPage, from, to });
 
   return (
     <>
@@ -29,7 +30,6 @@ function Products() {
           from={data?.meta.from}
           to={data?.meta.to}
           total={data?.meta.total}
-          setFilterByPrice={setFilterByPrice}
         />
         <ProductsList data={data} />
         <Pagination

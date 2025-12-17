@@ -1,17 +1,21 @@
+import { useEffect, useState } from "react";
+
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useSearchParams } from "react-router";
+
 import Input from "../../../../../components/Input/Input";
 import Button from "../../../../../components/Button/Button";
-import { InputError, PriceFilterBox } from "./priceFilter.styled";
-import { filterByPriceSchema } from "../../../../../validations/schemas/schemas";
-import { yupResolver } from "@hookform/resolvers/yup";
-import type { HeaderWithFilterProps } from "../../headerWithFilter.types";
-import { ErrMsg } from "../../../../../components/Input/inpur.styled";
-import { useEffect, useState } from "react";
-import type { PriceFilter } from "../../../products.types";
 
-export default function PriceFilter({
-  setFilterByPrice,
-}: Pick<HeaderWithFilterProps, "setFilterByPrice">) {
+import type { PriceFilterProps } from "./priceFilter.types";
+import type { Maybe } from "yup";
+
+import { filterByPriceSchema } from "../../../../../validations/schemas/schemas";
+
+import { ErrMsg } from "../../../../../components/Input/inpur.styled";
+import { InputError, PriceFilterBox } from "./priceFilter.styled";
+
+export default function PriceFilter({ setShowPriceFilter }: PriceFilterProps) {
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const {
     register,
@@ -22,8 +26,23 @@ export default function PriceFilter({
     mode: "onSubmit",
   });
 
-  const onSubmit = (data: PriceFilter) => {
-    setFilterByPrice(data);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const onSubmit = (data: { from?: Maybe<number>; to?: Maybe<number> }) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
+
+    if (data.from != null) params.set("from", String(data.from));
+    else params.delete("from");
+
+    if (data.to != null) params.set("to", String(data.to));
+    else params.delete("to");
+
+    setSearchParams(params);
+
+    if (Object.keys(errors).length === 0) {
+      setShowPriceFilter(false);
+    }
   };
 
   useEffect(() => {
@@ -50,7 +69,8 @@ export default function PriceFilter({
           <Input label="from" placeholder="From" register={register} />
           <Input label="to" placeholder="To" register={register} />
         </div>
-        {errorMessages && errorMessages.map((err) => <ErrMsg>{err}</ErrMsg>)}
+        {errorMessages &&
+          errorMessages.map((err) => <ErrMsg key={err}>{err}</ErrMsg>)}
       </InputError>
       <Button handleSubmit={handleSubmit(onSubmit)} text="Apply" />
     </PriceFilterBox>
