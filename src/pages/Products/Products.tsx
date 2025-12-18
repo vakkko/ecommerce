@@ -20,7 +20,9 @@ function Products() {
     ? Number(searchParams.get("to"))
     : undefined;
 
-  const { data } = useGetProductsQuery({ page: currentPage, from, to });
+  const sort = searchParams.get("sort") ?? undefined;
+
+  const { data } = useGetProductsQuery({ page: currentPage, from, to, sort });
 
   return (
     <>
