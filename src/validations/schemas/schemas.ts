@@ -44,14 +44,23 @@ export const loginSchema = yup.object({
 });
 
 export const priceSchema = (value: string) =>
-  yup.number().typeError(numberType(value));
+  yup
+    .number()
+    .transform((val, originValue) => (originValue === "" ? undefined : val))
+    .typeError(numberType(value))
+    .notRequired();
 
 export const filterByPriceSchema = yup
   .object({
-    from: priceSchema("From").notRequired(),
-    to: priceSchema("To").notRequired(),
+    from: priceSchema("From"),
+    to: priceSchema("To"),
   })
   .test(priceFilterMissmatch, (values) => {
-    if (values.from == null || values.to == null) return;
-    return values.from <= values.to;
+    if (!values) return true;
+
+    const { from, to } = values;
+
+    if (from == null || to == null) return true;
+
+    return from <= to;
   });
