@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const SortBYBox = styled.div`
   position: absolute;
@@ -19,10 +19,16 @@ export const SortBYBox = styled.div`
     line-height: 100%;
     color: var(--darkBlue);
   }
+`;
 
-  & > button {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 100%;
-  }
+export const SortButton = styled.button<{ $active: boolean }>`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+
+  ${(props) =>
+    props.$active &&
+    css`
+      font-weight: 600;
+    `}
 `;
