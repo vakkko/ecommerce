@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
-import type { InputProps } from "./input.types";
-import { ErrMsg, EyeImg, InputCont } from "./inpur.styled";
+
 import type { FieldValues } from "react-hook-form";
+
+import type { InputProps } from "./input.types";
+
+import { ErrMsg, EyeImg, InputCont } from "./inpur.styled";
 
 export default function Input<T extends FieldValues>({
   placeholder,
@@ -9,9 +12,9 @@ export default function Input<T extends FieldValues>({
   label,
   register,
   errors,
+  watch,
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [showLabel, setShowLabel] = useState<boolean>(true);
   const [type, setType] = useState<string | undefined>(() =>
     icon ? "password" : undefined
   );
@@ -19,12 +22,7 @@ export default function Input<T extends FieldValues>({
   const handleLabelClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
-      setShowLabel(false);
     }
-  };
-
-  const handleInputClick = () => {
-    setShowLabel(false);
   };
 
   const handleEyeClick = () => {
@@ -36,11 +34,8 @@ export default function Input<T extends FieldValues>({
     }
   };
 
-  const handleInputBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === "") {
-      setShowLabel(true);
-    }
-  };
+  const value = watch(label);
+  const showLabel = value == null || value === "";
 
   const fieldError = errors && errors[label];
   const errorMessage = fieldError?.message ? fieldError.message : undefined;
@@ -55,13 +50,11 @@ export default function Input<T extends FieldValues>({
       <input
         data-testid="input"
         type={type}
-        onClick={handleInputClick}
         {...register(label)}
         ref={(el) => {
           inputRef.current = el;
           register(label).ref(el);
         }}
-        onBlur={handleInputBlur}
       />
       {icon && (
         <EyeImg onClick={handleEyeClick} src="/images/eye.png" alt="eye" />

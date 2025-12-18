@@ -20,7 +20,9 @@ export default function PriceFilter({ setShowPriceFilter }: PriceFilterProps) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(filterByPriceSchema),
     mode: "onSubmit",
@@ -61,13 +63,34 @@ export default function PriceFilter({ setShowPriceFilter }: PriceFilterProps) {
     setErrorMessages(messages);
   }, [errors]);
 
+  useEffect(() => {
+    const from = searchParams.get("from");
+    const to = searchParams.get("to");
+
+    if (from) setValue("from", Number(from));
+    else setValue("from", undefined);
+
+    if (to) setValue("to", Number(to));
+    else setValue("to", undefined);
+  }, [searchParams, setValue]);
+
   return (
     <PriceFilterBox>
       <h4>Select price</h4>
       <InputError>
         <div>
-          <Input label="from" placeholder="From" register={register} />
-          <Input label="to" placeholder="To" register={register} />
+          <Input
+            label="from"
+            placeholder="From"
+            register={register}
+            watch={watch}
+          />
+          <Input
+            label="to"
+            placeholder="To"
+            register={register}
+            watch={watch}
+          />
         </div>
         {errorMessages &&
           errorMessages.map((err) => <ErrMsg key={err}>{err}</ErrMsg>)}
