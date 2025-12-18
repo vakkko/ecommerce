@@ -3,6 +3,7 @@ import type {
   FieldValues,
   UseFormRegister,
   Path,
+  UseFormWatch,
 } from "react-hook-form";
 
 export interface InputProps<T extends FieldValues> {
@@ -11,4 +12,5 @@ export interface InputProps<T extends FieldValues> {
   label: Path<T>;
   register: UseFormRegister<T>;
   errors?: FieldErrors<T>;
+  watch: UseFormWatch<T>;
 }
