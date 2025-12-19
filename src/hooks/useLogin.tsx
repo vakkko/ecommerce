@@ -21,6 +21,7 @@ const useLogin = () => {
     try {
       const response = await loginUser(formData).unwrap();
       dispatch(setAvatarImg(response.user.avatar));
+      localStorage.setItem("token", response.token);
       navigate("/products?page=1");
     } catch (error: unknown) {
       const err = error as LoginErr;
