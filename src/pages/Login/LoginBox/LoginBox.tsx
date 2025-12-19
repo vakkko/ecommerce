@@ -21,7 +21,7 @@ export default function LoginBox() {
 
   return (
     <LoginCont>
-      <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <HeadingText text="Log in" />
         <Input
           errors={errors}
@@ -39,9 +39,9 @@ export default function LoginBox() {
           watch={watch}
         />
         {loginError && <ErrMsg>{loginError}</ErrMsg>}
-      </div>
+      </form>
       <ButtonBox>
-        <Button handleSubmit={handleSubmit(onSubmit)} text={"Log in"} />
+        <Button type="submit" text={"Log in"} />
         <InfoText url="/register" text="Not a member?" link="Register" />
       </ButtonBox>
     </LoginCont>
