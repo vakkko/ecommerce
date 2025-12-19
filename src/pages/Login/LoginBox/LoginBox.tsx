@@ -14,6 +14,7 @@ export default function LoginBox() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<LoginFormData>({ resolver: yupResolver(loginSchema) });
   const { loginError, onSubmit } = useLogin();
@@ -27,6 +28,7 @@ export default function LoginBox() {
           register={register}
           label="email"
           placeholder="Email"
+          watch={watch}
         />
         <Input
           errors={errors}
@@ -34,6 +36,7 @@ export default function LoginBox() {
           label="password"
           placeholder="Password"
           icon
+          watch={watch}
         />
         {loginError && <ErrMsg>{loginError}</ErrMsg>}
       </div>

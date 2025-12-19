@@ -20,6 +20,7 @@ function RegisterBox() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: yupResolver(registerSchema),
@@ -38,12 +39,14 @@ function RegisterBox() {
           label="username"
           placeholder="Username"
           errors={errors}
+          watch={watch}
         />
         <Input
           errors={errors}
           register={register}
           label="email"
           placeholder="Email"
+          watch={watch}
         />
         <Input
           errors={errors}
@@ -51,6 +54,7 @@ function RegisterBox() {
           label="password"
           placeholder="Password"
           icon
+          watch={watch}
         />
         <Input
           errors={errors}
@@ -58,6 +62,7 @@ function RegisterBox() {
           label="confirmpassword"
           placeholder="Confirm password"
           icon
+          watch={watch}
         />
         {responseMsg &&
           responseMsg.map((err, i) => (
