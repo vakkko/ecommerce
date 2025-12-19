@@ -39,11 +39,11 @@ export default function LoginBox() {
           watch={watch}
         />
         {loginError && <ErrMsg>{loginError}</ErrMsg>}
+        <ButtonBox>
+          <Button type="submit" text={"Log in"} />
+          <InfoText url="/register" text="Not a member?" link="Register" />
+        </ButtonBox>
       </form>
-      <ButtonBox>
-        <Button type="submit" text={"Log in"} />
-        <InfoText url="/register" text="Not a member?" link="Register" />
-      </ButtonBox>
     </LoginCont>
   );
 }
