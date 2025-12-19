@@ -9,6 +9,7 @@ export interface AuthContainerProps {
 export interface ButtonProps {
   text: string;
   handleSubmit?: (e?: BaseSyntheticEvent<object> | undefined) => Promise<void>;
+  type?: "button" | "submit";
 }
 
 export interface InfoTextProps {

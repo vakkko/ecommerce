@@ -7,7 +7,7 @@ export const RegisterCont = styled.div`
   }
 `;
 
-export const InfoBox = styled.div`
+export const RegisterForm = styled.form`
   margin-top: 22px;
   display: flex;
   flex-direction: column;
