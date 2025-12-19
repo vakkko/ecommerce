@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import Input from "./Input";
 import type { FieldValues, UseFormRegister } from "react-hook-form";
 
@@ -9,7 +9,10 @@ describe("Input", () => {
     onBlur: vi.fn().mockResolvedValue(undefined),
     ref: vi.fn(),
     name,
+    value: watchMock(name),
   })) as unknown as UseFormRegister<FieldValues>;
+
+  const watchMock = vi.fn().mockReturnValue("");
 
   const inputProps = {
     label: "username",
@@ -17,34 +20,35 @@ describe("Input", () => {
     register: registerMock,
     errors: undefined,
     icon: false,
+    watch: watchMock,
   };
 
-  it("Label hides when input is clicked", () => {
+  beforeEach(() => {
+    watchMock.mockReset();
+  });
+
+  it("Show input value when it's defined and hide label", () => {
+    watchMock.mockReturnValue("something");
+
     render(<Input {...inputProps} />);
 
-    const label = screen.getByText("UserName");
-
-    expect(label).toBeInTheDocument();
-
     const input = screen.getByRole("textbox");
-    fireEvent.click(input);
 
+    expect(input).toHaveValue("something");
     expect(screen.queryByText("Username")).not.toBeInTheDocument();
   });
 
-  it("Label hides and input gets focus when label is clicked", () => {
+  it("Input gets focus when label is clicked", () => {
     render(<Input {...inputProps} />);
 
     const label = screen.getByText("UserName");
-    fireEvent.click(label);
-
-    expect(screen.queryByText("UserName")).not.toBeInTheDocument();
-
     const input = screen.getByRole("textbox");
+
+    fireEvent.click(label);
     expect(input).toHaveFocus();
   });
 
-  it("eye icon doesn't render when icon is false", () => {
+  it("Eye icon doesn't render when icon is false", () => {
     render(<Input {...inputProps} />);
 
     const eyeIcon = screen.queryByRole("img");
