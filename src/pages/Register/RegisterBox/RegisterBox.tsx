@@ -1,20 +1,21 @@
+import { useForm } from "react-hook-form";
+
 import Button from "../../../components/Button/Button";
 import HeadingText from "../../../components/HeadingText/HeadingText";
 import InfoText from "../../../components/InfoText/InfoText";
 import Input from "../../../components/Input/Input";
-import { ButtonBox } from "../../Login/LoginBox/loginBox.styled";
 import ImageUpload from "./ImageUpload/ImageUpload";
-
-import { InfoBox, RegisterCont } from "./registerBox.styled";
-
-import { useForm } from "react-hook-form";
+import { ErrMsg } from "../../../components/Input/inpur.styled";
 
 import { registerSchema } from "../../../validations/schemas/schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import useRegister from "../../../hooks/useRegister";
+
 import type { RegisterFormData } from "./registerBox.types";
 
-import useRegister from "../../../hooks/useRegister";
+import { ButtonBox } from "../../Login/LoginBox/loginBox.styled";
+import { RegisterForm, RegisterCont } from "./registerBox.styled";
 
 function RegisterBox() {
   const {
@@ -32,7 +33,7 @@ function RegisterBox() {
   return (
     <RegisterCont>
       <HeadingText text="Registration" />
-      <InfoBox>
+      <RegisterForm onSubmit={handleSubmit(onSubmit)}>
         <ImageUpload setAvatar={setAvatar} />
         <Input
           register={register}
@@ -65,16 +66,12 @@ function RegisterBox() {
           watch={watch}
         />
         {responseMsg &&
-          responseMsg.map((err, i) => (
-            <p key={i} style={{ color: "var(--red)" }}>
-              {err}
-            </p>
-          ))}
+          responseMsg.map((err, i) => <ErrMsg key={i}>{err}</ErrMsg>)}
         <ButtonBox>
-          <Button handleSubmit={handleSubmit(onSubmit)} text="Register" />
+          <Button type="submit" text="Register" />
           <InfoText url="/login" text="Already member?" link="Log in" />
         </ButtonBox>
-      </InfoBox>
+      </RegisterForm>
     </RegisterCont>
   );
 }
