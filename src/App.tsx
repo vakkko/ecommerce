@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { HashRouter, Navigate, Route, Routes } from "react-router";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Products from "./pages/Products/Products";
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
@@ -27,7 +27,7 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 }
