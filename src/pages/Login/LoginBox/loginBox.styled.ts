@@ -5,7 +5,7 @@ export const LoginCont = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > div {
+  & > form {
     display: flex;
     flex-direction: column;
     gap: 24px;
