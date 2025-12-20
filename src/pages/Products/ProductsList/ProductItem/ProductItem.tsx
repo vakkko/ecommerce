@@ -1,6 +1,6 @@
-import { ImageBox, Price, ProductBox, ProductName } from "./product.styles";
+import { ImageBox, Price, ProductBox, ProductName } from "./productItem.styles";
 
-import type { ProductProps } from "./product.types";
+import type { ProductProps } from "./productItem.types";
 
 export default function Product({
   cover_image,

@@ -6,6 +6,7 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Product from "./pages/Product/Product";
 
 function App() {
   const authorized = localStorage.getItem("token");
@@ -18,14 +19,24 @@ function App() {
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/products"
-            element={
-              <ProtectedRoute isAuth={authorized}>
-                <Products />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/products">
+            <Route
+              index
+              element={
+                <ProtectedRoute isAuth={authorized}>
+                  <Products />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path=":id"
+              element={
+                <ProtectedRoute isAuth={authorized}>
+                  <Product />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
         </Routes>
       </HashRouter>
     </Provider>
