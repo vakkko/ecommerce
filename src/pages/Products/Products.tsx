@@ -9,18 +9,20 @@ import { ProductsContainer } from "./products.styled";
 
 function Products() {
   const [searchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get("page"));
+  const page = searchParams.get("page")
+    ? searchParams.get("page")?.toString()
+    : undefined;
   const from = searchParams.get("from")
-    ? Number(searchParams.get("from"))
+    ? searchParams.get("from")?.toString()
     : undefined;
 
   const to = searchParams.get("to")
-    ? Number(searchParams.get("to"))
+    ? searchParams.get("to")?.toString()
     : undefined;
 
   const sort = searchParams.get("sort") ?? undefined;
 
-  const { data } = useGetProductsQuery({ page: currentPage, from, to, sort });
+  const { data } = useGetProductsQuery({ page, from, to, sort });
 
   return (
     <>

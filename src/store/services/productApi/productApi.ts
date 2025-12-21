@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../../consts/api.const";
-import type { ProductsApiResponse } from "./productApi.types";
+import type {
+  ProductsApiResponse,
+  GetProductsParams,
+} from "./productApi.types";
 
 export const productApiSlice = createApi({
   reducerPath: "products",
@@ -8,22 +11,18 @@ export const productApiSlice = createApi({
     baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query<
-      ProductsApiResponse,
-      {
-        page: number;
-        from: number | undefined;
-        to: number | undefined;
-        sort: string | undefined;
-      }
-    >({
-      query: ({ page, from, to, sort }) => {
-        let url = `/products?page=${page}`;
-        if (from !== undefined) url += `&filter%5Bprice_from%5D=${from}`;
-        if (to !== undefined) url += `&filter%5Bprice_to%5D=${to}`;
-        if (sort !== undefined) url += `&sort=${sort}`;
+    getProducts: builder.query<ProductsApiResponse, GetProductsParams>({
+      query: ({ page, from, to, sort, id }) => {
+        const params = new URLSearchParams();
+        if (page !== undefined) params.set("page", page);
+        if (from !== undefined) params.set("filter[price_from]", from);
+        if (to !== undefined) params.set("filters[price_to]", to);
+        if (sort !== undefined) params.set("sort", sort);
 
-        return url;
+        const base = id !== undefined ? `/products/${id}` : "/products";
+        const qs = params.toString();
+
+        return qs ? `${base}?${qs}` : base;
       },
     }),
   }),

@@ -39,3 +39,11 @@ export interface ProductsApiResponse {
   links: Links;
   meta: Meta;
 }
+
+export type GetProductsParams = {
+  page?: string;
+  from?: string;
+  to?: string;
+  sort?: string;
+  id?: number;
+};
