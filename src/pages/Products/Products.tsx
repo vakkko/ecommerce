@@ -1,8 +1,6 @@
 import { useSearchParams } from "react-router";
 import { useGetProductsQuery } from "../../store/services/productApi/productApi";
 
-import Header from "../../components/Header/Header";
-
 import HeaderWithFilter from "./HeaderWithFilter/HeaderWithFilter";
 import Pagination from "./Pagination/Pagination";
 import ProductsList from "./ProductsList/ProductsList";
@@ -26,7 +24,6 @@ function Products() {
 
   return (
     <>
-      <Header productsPage text="products" />
       <ProductsContainer>
         <HeaderWithFilter
           from={data?.meta.from}
