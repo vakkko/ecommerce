@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   CoverImage,
   Images,
@@ -6,19 +7,52 @@ import {
 } from "./productImages.styled";
 import type { ProductImagesProps } from "./productImages.types";
 
-export default function ProductImages({ images }: ProductImagesProps) {
-  const { cover_image, otherImages, description } = images;
+export default function ProductImages({
+  images,
+  description,
+}: ProductImagesProps) {
+  const [productImages, setProductImages] = useState<
+    ProductImagesProps["images"]
+  >([]);
+
+  useEffect(() => {
+    setProductImages(images);
+  }, [images]);
+
+  const handleImgDetect = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLImageElement;
+    const currentImg = target.currentSrc;
+    if (currentImg) {
+      const updateCollection = productImages.map((img) => {
+        if (img.image === currentImg) {
+          return { ...img, spotlight: true };
+        } else {
+          return { ...img, spotlight: false };
+        }
+      });
+      setProductImages(updateCollection);
+    }
+  };
+
   return (
     <ImagesContainer>
       <h4>Listing / Product</h4>
-      <Images>
+      <Images onClick={handleImgDetect}>
         <OtherImages>
-          {otherImages?.map((img) => (
-            <img src={img} alt={description} />
-          ))}
+          {productImages?.map(
+            (img) =>
+              !img.spotlight && (
+                <img key={img.id} src={img.image} alt={description} />
+              )
+          )}
         </OtherImages>
         <CoverImage>
-          <img src={cover_image} alt={description} />
+          {productImages?.map(
+            (img) =>
+              img.spotlight && (
+                <img key={img.id} src={img.image} alt={description} />
+              )
+          )}
         </CoverImage>
       </Images>
     </ImagesContainer>
