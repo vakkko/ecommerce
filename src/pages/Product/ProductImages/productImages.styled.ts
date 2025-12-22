@@ -15,12 +15,17 @@ export const ImagesContainer = styled.div`
 export const Images = styled.div`
   display: flex;
   gap: 24px;
+
+  & img {
+    cursor: pointer;
+  }
 `;
 
 export const OtherImages = styled.div`
   display: flex;
   flex-direction: column;
   gap: 9px;
+  height: fit-content;
   & > img {
     width: 121px;
     height: 161.33px;

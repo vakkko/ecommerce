@@ -1,7 +1,8 @@
 export interface ProductImagesProps {
   images: {
-    cover_image?: string;
-    otherImages?: string[];
-    description?: string;
-  };
+    image: string | undefined;
+    spotlight: boolean;
+    id: string;
+  }[];
+  description?: string;
 }
