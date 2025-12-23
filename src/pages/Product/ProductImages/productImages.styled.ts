@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ImagesContainer = styled.div`
   display: flex;
@@ -21,15 +21,23 @@ export const Images = styled.div`
   }
 `;
 
-export const OtherImages = styled.div`
+export const SidebarImages = styled.div`
   display: flex;
   flex-direction: column;
   gap: 9px;
   height: fit-content;
-  & > img {
-    width: 121px;
-    height: 161.33px;
-  }
+`;
+
+export const SidebarImage = styled.img<{ $active: boolean }>`
+  width: 121px;
+  height: 161.33px;
+
+  ${(props) =>
+    props.$active &&
+    css`
+      border: 5px solid var(--grey);
+      border-radius: 5px;
+    `}
 `;
 
 export const CoverImage = styled.div`
