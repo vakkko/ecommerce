@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { useGetProductByIdQuery } from "../../store/services/productApi/productApi";
 import ProductImages from "./ProductImages/ProductImages";
 import { ProductContainer } from "./product.styled";
+import ProductDetails from "./ProductDetails/ProductDetails";
 
 export default function Product() {
   const id = Number(useParams().id);
@@ -18,7 +19,11 @@ export default function Product() {
 
   return (
     <ProductContainer>
-      <ProductImages images={images} description={description} />
+      <h4>Listing / Product</h4>
+      <div>
+        <ProductImages images={images} description={description} />
+        <ProductDetails data={data} />
+      </div>
     </ProductContainer>
   );
 }

@@ -25,7 +25,6 @@ export default function ProductImages({
 
   return (
     <ImagesContainer>
-      <h4>Listing / Product</h4>
       <Images>
         <SidebarImages>
           {images?.map((img) => (
