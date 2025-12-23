@@ -1,9 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const ImagesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 49px;
   & > h4 {
     font-weight: 300;
     font-size: 14px;
