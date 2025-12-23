@@ -1,57 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   CoverImage,
   Images,
   ImagesContainer,
-  OtherImages,
+  SidebarImage,
+  SidebarImages,
 } from "./productImages.styled";
-import type { ProductImagesProps } from "./productImages.types";
+import type { ImageInterface, ProductImagesProps } from "./productImages.types";
 
 export default function ProductImages({
   images,
   description,
 }: ProductImagesProps) {
-  const [productImages, setProductImages] = useState<
-    ProductImagesProps["images"]
-  >([]);
-
-  useEffect(() => {
-    setProductImages(images);
-  }, [images]);
-
-  const handleImgDetect = (event: React.MouseEvent<HTMLDivElement>) => {
-    const target = event.target as HTMLImageElement;
-    const currentImg = target.currentSrc;
-    if (currentImg) {
-      const updateCollection = productImages.map((img) => {
-        if (img.image === currentImg) {
-          return { ...img, spotlight: true };
-        } else {
-          return { ...img, spotlight: false };
-        }
-      });
-      setProductImages(updateCollection);
+  const [activeImage, setActiveImage] = useState<ImageInterface | undefined>(
+    () => {
+      return images?.find((img) => img.spotlight) ?? images[0];
     }
+  );
+
+  const handleImageClick = (id: string) => {
+    const selectedImage = images.find((img) => img.id === id);
+    if (selectedImage) setActiveImage(selectedImage);
   };
 
   return (
     <ImagesContainer>
       <h4>Listing / Product</h4>
-      <Images onClick={handleImgDetect}>
-        <OtherImages>
-          {productImages?.map(
-            (img) =>
-              !img.spotlight && (
-                <img key={img.id} src={img.image} alt={description} />
-              )
-          )}
-        </OtherImages>
+      <Images>
+        <SidebarImages>
+          {images?.map((img) => (
+            <SidebarImage
+              $active={activeImage?.id === img.id}
+              onClick={() => handleImageClick(img.id)}
+              key={img.id}
+              src={img.image}
+              alt={description}
+            />
+          ))}
+        </SidebarImages>
         <CoverImage>
-          {productImages?.map(
-            (img) =>
-              img.spotlight && (
-                <img key={img.id} src={img.image} alt={description} />
-              )
+          {activeImage && (
+            <img
+              key={activeImage.id}
+              src={activeImage.image}
+              alt={description}
+            />
           )}
         </CoverImage>
       </Images>
