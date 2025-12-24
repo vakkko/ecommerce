@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useLoginUserMutation } from "../store/services/authApi";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import type { LoginErr } from "../pages/Login/LoginBox/loginBox.types";
-import { setAvatarImg } from "../store/slices/authSlice";
+import { setAvatarImg } from "../store/slices/AuthSlice/authSlice";
 import { useDispatch } from "react-redux";
 
 const useLogin = () => {

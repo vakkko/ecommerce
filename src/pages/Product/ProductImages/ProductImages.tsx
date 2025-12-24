@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   CoverImage,
   Images,
@@ -6,44 +5,41 @@ import {
   SidebarImage,
   SidebarImages,
 } from "./productImages.styled";
-import type { ImageInterface, ProductImagesProps } from "./productImages.types";
+import type { ProductImagesProps } from "./productImages.types";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../../store/store";
+import { setActiveImage } from "../../../store/slices/ActiveImgSlice/activeImageSlice";
 
 export default function ProductImages({
   images,
   description,
 }: ProductImagesProps) {
-  const [activeImage, setActiveImage] = useState<ImageInterface | undefined>(
-    () => {
-      return images?.find((img) => img.spotlight) ?? images[0];
-    }
+  const dispatch = useDispatch();
+  const activeImageIndex = useSelector(
+    (state: RootState) => state.activeImg.index
   );
 
-  const handleImageClick = (id: string) => {
-    const selectedImage = images.find((img) => img.id === id);
-    if (selectedImage) setActiveImage(selectedImage);
+  const handleImageClick = (i: number) => {
+    dispatch(setActiveImage(i));
   };
 
   return (
     <ImagesContainer>
       <Images>
         <SidebarImages>
-          {images?.map((img) => (
+          {images?.map((img, index) => (
             <SidebarImage
-              $active={activeImage?.id === img.id}
-              onClick={() => handleImageClick(img.id)}
-              key={img.id}
-              src={img.image}
+              $active={activeImageIndex === index}
+              onClick={() => handleImageClick(index)}
+              key={index}
+              src={img}
               alt={description}
             />
           ))}
         </SidebarImages>
         <CoverImage>
-          {activeImage && (
-            <img
-              key={activeImage.id}
-              src={activeImage.image}
-              alt={description}
-            />
+          {images?.[activeImageIndex] && (
+            <img src={images?.[activeImageIndex]} alt={description} />
           )}
         </CoverImage>
       </Images>

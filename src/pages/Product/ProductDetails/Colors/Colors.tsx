@@ -1,16 +1,37 @@
-import { ColorBox, ColorCircle } from "./colors.styled";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../../../store/store";
+
 import { stringToColor } from "string-to-color-gradient";
+
+import { CircleWrapper, ColorBox, ColorCircle } from "./colors.styled";
+import { setActiveImage } from "../../../../store/slices/ActiveImgSlice/activeImageSlice";
+
 export default function Colors({ colors }: { colors: string[] | undefined }) {
   const colorHashes = colors?.map((color) =>
     stringToColor(color.toLowerCase())
   );
+
+  const dispatch = useDispatch();
+  const activeImageIndex = useSelector(
+    (state: RootState) => state.activeImg.index
+  );
+
+  const handleColorClick = (index: number) => {
+    dispatch(setActiveImage(index));
+  };
 
   return (
     <ColorBox>
       <span>Color</span>
       <div>
         {colorHashes?.map((color, index) => (
-          <ColorCircle $color={color} key={index}></ColorCircle>
+          <CircleWrapper
+            onClick={() => handleColorClick(index)}
+            $active={activeImageIndex === index}
+            key={index}
+          >
+            <ColorCircle $color={color}></ColorCircle>
+          </CircleWrapper>
         ))}
       </div>
     </ColorBox>
