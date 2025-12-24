@@ -8,20 +8,13 @@ export default function Product() {
   const id = Number(useParams().id);
   const { data } = useGetProductByIdQuery(id);
 
-  const images = [
-    ...(data?.images.map((img) => ({
-      image: img,
-      spotlight: data?.cover_image === img ? true : false,
-      id: crypto.randomUUID(),
-    })) ?? []),
-  ];
   const description = data?.description;
 
   return (
     <ProductContainer>
       <h4>Listing / Product</h4>
       <div>
-        <ProductImages images={images} description={description} />
+        <ProductImages images={data?.images} description={description} />
         <ProductDetails data={data} />
       </div>
     </ProductContainer>
