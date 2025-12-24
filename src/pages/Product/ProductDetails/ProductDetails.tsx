@@ -1,4 +1,6 @@
 import type { Product } from "../../../store/services/productApi/productApi.types";
+import Colors from "./Colors/Colors";
+import { ProductDetailsContainer } from "./productDetails.styled";
 import TitlePrice from "./TitlePrice/TitlePrice";
 
 export default function ProductDetails({
@@ -7,8 +9,11 @@ export default function ProductDetails({
   data: Product | undefined;
 }) {
   return (
-    <div>
+    <ProductDetailsContainer>
       <TitlePrice namePrice={{ name: data?.name, price: data?.price }} />
-    </div>
+      <div>
+        <Colors colors={data?.available_colors} />
+      </div>
+    </ProductDetailsContainer>
   );
 }
