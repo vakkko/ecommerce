@@ -5,7 +5,13 @@ import type { HeaderProps } from "./header.types";
 
 import { selectAvatar } from "../../store/selectores/authSelector";
 
-import { AvatarImg, HeaderCont, LogoBox, RegisterBox } from "./header.styled";
+import {
+  AvatarImg,
+  CartImage,
+  HeaderCont,
+  LogoBox,
+  RegisterBox,
+} from "./header.styled";
 
 export default function Header({ text, url, productsPage }: HeaderProps) {
   const avatar = useSelector(selectAvatar);
@@ -24,6 +30,7 @@ export default function Header({ text, url, productsPage }: HeaderProps) {
             </>
           ) : (
             <>
+              {!url && <CartImage src="./images/cart.svg" alt="cart" />}
               <img src="/images/user-icon.png" alt="user" />
               {url && <Link to={url}>{text}</Link>}
             </>
