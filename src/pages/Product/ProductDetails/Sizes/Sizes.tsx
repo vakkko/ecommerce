@@ -1,5 +1,6 @@
-import { SizeFieldset, SizeLabel } from "./sizes.styled";
 import type { SizesProps } from "./sizes.types";
+
+import { SizeFieldset, SizeLabel } from "./sizes.styled";
 
 export default function Sizes({ sizes }: SizesProps) {
   return (
