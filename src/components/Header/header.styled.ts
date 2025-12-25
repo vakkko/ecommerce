@@ -38,3 +38,7 @@ export const AvatarImg = styled.img`
   height: 40px;
   border-radius: 20px;
 `;
+
+export const CartImage = styled.img`
+  cursor: pointer;
+`;
