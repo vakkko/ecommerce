@@ -95,7 +95,7 @@ export default function PriceFilter({ setShowPriceFilter }: PriceFilterProps) {
         {errorMessages &&
           errorMessages.map((err) => <ErrMsg key={err}>{err}</ErrMsg>)}
       </InputError>
-      <Button handleSubmit={handleSubmit(onSubmit)} text="Apply" />
+      <Button handleSubmit={handleSubmit(onSubmit)} children="Apply" />
     </PriceFilterBox>
   );
 }
