@@ -1,6 +1,7 @@
 import type { Product } from "../../../store/services/productApi/productApi.types";
 import Colors from "./Colors/Colors";
 import { ProductDetailsContainer } from "./productDetails.styled";
+import Sizes from "./Sizes/Sizes";
 import TitlePrice from "./TitlePrice/TitlePrice";
 
 export default function ProductDetails({
@@ -13,6 +14,7 @@ export default function ProductDetails({
       <TitlePrice namePrice={{ name: data?.name, price: data?.price }} />
       <div>
         <Colors colors={data?.available_colors} />
+        <Sizes sizes={data?.available_sizes} />
       </div>
     </ProductDetailsContainer>
   );
