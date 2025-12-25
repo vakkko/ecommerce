@@ -5,8 +5,9 @@ import { stringToColor } from "string-to-color-gradient";
 
 import { CircleWrapper, ColorBox, ColorCircle } from "./colors.styled";
 import { setActiveImage } from "../../../../store/slices/ActiveImgSlice/activeImageSlice";
+import type { ColorProps } from "./colors.types";
 
-export default function Colors({ colors }: { colors: string[] | undefined }) {
+export default function Colors({ colors, setValue }: ColorProps) {
   const colorHashes = colors?.map((color) =>
     stringToColor(color.toLowerCase())
   );
@@ -18,6 +19,7 @@ export default function Colors({ colors }: { colors: string[] | undefined }) {
 
   const handleColorClick = (index: number) => {
     dispatch(setActiveImage(index));
+    setValue("color", colors![index]);
   };
 
   return (

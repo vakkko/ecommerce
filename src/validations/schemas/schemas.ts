@@ -64,3 +64,9 @@ export const filterByPriceSchema = yup
 
     return from <= to;
   });
+
+export const ProductDetailsSchema = yup.object({
+  color: yup.string().required(),
+  size: yup.string().required(),
+  quantity: yup.number().required(),
+});
