@@ -40,7 +40,7 @@ export default function LoginBox() {
         />
         {loginError && <ErrMsg>{loginError}</ErrMsg>}
         <ButtonBox>
-          <Button type="submit" text={"Log in"} />
+          <Button type="submit" children={"Log in"} />
           <InfoText url="/register" text="Not a member?" link="Register" />
         </ButtonBox>
       </form>

@@ -68,7 +68,7 @@ function RegisterBox() {
         {responseMsg &&
           responseMsg.map((err, i) => <ErrMsg key={i}>{err}</ErrMsg>)}
         <ButtonBox>
-          <Button type="submit" text="Register" />
+          <Button type="submit" children="Register" />
           <InfoText url="/login" text="Already member?" link="Log in" />
         </ButtonBox>
       </RegisterForm>

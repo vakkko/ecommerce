@@ -1,10 +1,10 @@
-import type { ButtonProps } from "../../types";
+import type { ButtonProps } from "./button.types";
 import { StyledButton } from "./button.styled";
 
-export default function Button({ text, handleSubmit, type }: ButtonProps) {
+export default function Button({ children, handleSubmit, type }: ButtonProps) {
   return (
     <StyledButton type={type} onClick={handleSubmit}>
-      {text}
+      {children}
     </StyledButton>
   );
 }
