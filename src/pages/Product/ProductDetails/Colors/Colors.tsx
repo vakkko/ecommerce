@@ -6,6 +6,7 @@ import { stringToColor } from "string-to-color-gradient";
 import { CircleWrapper, ColorBox, ColorCircle } from "./colors.styled";
 import { setActiveImage } from "../../../../store/slices/ActiveImgSlice/activeImageSlice";
 import type { ColorProps } from "./colors.types";
+import { useEffect } from "react";
 
 export default function Colors({ colors, setValue }: ColorProps) {
   const colorHashes = colors?.map((color) =>
@@ -16,6 +17,12 @@ export default function Colors({ colors, setValue }: ColorProps) {
   const activeImageIndex = useSelector(
     (state: RootState) => state.activeImg.index
   );
+
+  useEffect(() => {
+    if (colors?.length) {
+      setValue("color", colors[0]);
+    }
+  }, [colors, setValue]);
 
   const handleColorClick = (index: number) => {
     dispatch(setActiveImage(index));
