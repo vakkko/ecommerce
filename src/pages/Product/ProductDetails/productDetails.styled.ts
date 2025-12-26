@@ -11,3 +11,7 @@ export const ProductDetailsContainer = styled.div`
     gap: 48px;
   }
 `;
+
+export const HorizontalLine = styled.hr`
+  border-color: var(--grey2);
+`;
