@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import type { HeaderProps } from "./header.types";
 
-import { selectAvatar } from "../../store/selectores/authSelector";
+import { selectAvatar } from "../../store/slices/AuthSlice/authSelector";
 
 import {
   AvatarImg,

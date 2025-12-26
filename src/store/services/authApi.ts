@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from "../../consts/api.const";
 
 export const authApiSlice = createApi({
-  reducerPath: "register",
+  reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.redseam.redberryinternship.ge/api",
+    baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
