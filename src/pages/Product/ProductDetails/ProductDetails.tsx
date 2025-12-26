@@ -18,7 +18,12 @@ import { ProductDetailsSchema } from "../../../validations/schemas/schemas";
 import { useParams } from "react-router";
 
 export default function ProductDetails({ data }: ProductDetailsProps) {
-  const { handleSubmit, setValue, watch } = useForm<InputValues>({
+  const {
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<InputValues>({
     resolver: yupResolver(ProductDetailsSchema),
     defaultValues: {
       quantity: 1,
@@ -45,6 +50,7 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
           setValue={setValue}
           sizes={data?.available_sizes}
           selectedSize={selectedSize}
+          sizeError={errors.size?.message}
         />
         <Quantity setValue={setValue} selectedQuantity={selectedQuantity} />
       </div>

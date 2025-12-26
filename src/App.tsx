@@ -1,17 +1,17 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router";
+
+import { store } from "./store/store";
+import { Provider } from "react-redux";
+
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Products from "./pages/Products/Products";
-import { store } from "./store/store";
-import { Provider } from "react-redux";
+import Product from "./pages/Product/Product";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import Product from "./pages/Product/Product";
 import Header from "./components/Header/Header";
 
 function App() {
-  const authorized = localStorage.getItem("token");
-
   return (
     <Provider store={store}>
       <HashRouter>
@@ -23,7 +23,7 @@ function App() {
           <Route
             path="/products"
             element={
-              <ProtectedRoute isAuth={authorized}>
+              <ProtectedRoute>
                 <Header />
               </ProtectedRoute>
             }
