@@ -1,10 +1,12 @@
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 import Button from "../../../components/Button/Button";
 import Colors from "./Colors/Colors";
 import Quantity from "./Quantity/Quantity";
 import Sizes from "./Sizes/Sizes";
 import TitlePrice from "./TitlePrice/TitlePrice";
+
+import { useAddToCartMutation } from "../../../store/services/cartApi";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -13,6 +15,7 @@ import type { ProductDetailsProps } from "./productDetails.types";
 
 import { ProductDetailsContainer } from "./productDetails.styled";
 import { ProductDetailsSchema } from "../../../validations/schemas/schemas";
+import { useParams } from "react-router";
 
 export default function ProductDetails({ data }: ProductDetailsProps) {
   const { handleSubmit, setValue, watch } = useForm<InputValues>({
@@ -22,8 +25,16 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
     },
   });
 
+  const { id } = useParams();
+
+  const [addCart] = useAddToCartMutation();
+
   const selectedSize = watch("size");
   const selectedQuantity = watch("quantity");
+
+  const onSubmit: SubmitHandler<InputValues> = (data) => {
+    addCart({ id, ...data });
+  };
 
   return (
     <ProductDetailsContainer>
@@ -37,7 +48,7 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
         />
         <Quantity setValue={setValue} selectedQuantity={selectedQuantity} />
       </div>
-      <Button type="submit">
+      <Button type="submit" handleSubmit={handleSubmit(onSubmit)}>
         <svg
           width="21"
           height="20"
