@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   description: string;
   release_year: string;
+  brand: Brand;
   cover_image: string;
   images: string[];
   price: number;
@@ -46,4 +47,10 @@ export type GetProductsParams = {
   to?: string;
   sort?: string;
   id?: number;
+};
+
+export type Brand = {
+  id: number;
+  name: string;
+  image: string;
 };

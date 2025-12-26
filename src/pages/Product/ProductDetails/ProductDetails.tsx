@@ -5,17 +5,23 @@ import Colors from "./Colors/Colors";
 import Quantity from "./Quantity/Quantity";
 import Sizes from "./Sizes/Sizes";
 import TitlePrice from "./TitlePrice/TitlePrice";
+import Details from "./Details/Details";
+
+import { useParams } from "react-router";
 
 import { useAddToCartMutation } from "../../../store/services/cartApi";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { ProductDetailsSchema } from "../../../validations/schemas/schemas";
+
 import type { InputValues } from "./productDetails.types";
 import type { ProductDetailsProps } from "./productDetails.types";
 
-import { ProductDetailsContainer } from "./productDetails.styled";
-import { ProductDetailsSchema } from "../../../validations/schemas/schemas";
-import { useParams } from "react-router";
+import {
+  HorizontalLine,
+  ProductDetailsContainer,
+} from "./productDetails.styled";
 
 export default function ProductDetails({ data }: ProductDetailsProps) {
   const {
@@ -40,6 +46,8 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     addCart({ id, ...data });
   };
+
+  console.log(data);
 
   return (
     <ProductDetailsContainer>
@@ -72,6 +80,8 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
         </svg>
         Add to cart
       </Button>
+      <HorizontalLine />
+      <Details data={{ brand: data?.brand, description: data?.description }} />
     </ProductDetailsContainer>
   );
 }

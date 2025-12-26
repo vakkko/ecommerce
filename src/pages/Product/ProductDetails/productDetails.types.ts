@@ -7,5 +7,5 @@ export type InputValues = {
 };
 
 export interface ProductDetailsProps {
-  data: Product | undefined;
+  data?: Product;
 }
