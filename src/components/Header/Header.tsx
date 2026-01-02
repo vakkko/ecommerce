@@ -12,9 +12,20 @@ import {
   LogoBox,
   RegisterBox,
 } from "./header.styled";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import CartModal from "../../modal/CartModal/CartModal";
 
-export default function Header({ text, url, productsPage }: HeaderProps) {
+export default function Header({ text, url }: HeaderProps) {
   const avatar = useSelector(selectAvatar);
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const handleCartClick = () => {
+    setShowModal(true);
+  };
+
+  console.log(showModal);
+
   return (
     <>
       <HeaderCont>
@@ -23,20 +34,24 @@ export default function Header({ text, url, productsPage }: HeaderProps) {
           <h1>RedSeam Clothing</h1>
         </LogoBox>
         <RegisterBox>
-          {productsPage ? (
-            <>
-              <img src="/images/cart.svg" alt="cart" />
-              {avatar && <AvatarImg src={avatar} alt="user" />}
-            </>
-          ) : (
-            <>
-              {!url && <CartImage src="./images/cart.svg" alt="cart" />}
+          <>
+            {!url && (
+              <CartImage
+                onClick={handleCartClick}
+                src="./images/cart.svg"
+                alt="cart"
+              />
+            )}
+            {avatar ? (
+              <AvatarImg src={avatar} alt="user" />
+            ) : (
               <img src="/images/user-icon.png" alt="user" />
-              {url && <Link to={url}>{text}</Link>}
-            </>
-          )}
+            )}
+            {url && <Link to={url}>{text}</Link>}
+          </>
         </RegisterBox>
       </HeaderCont>
+      {showModal && createPortal(<CartModal />, document.body)}
       <Outlet />
     </>
   );
