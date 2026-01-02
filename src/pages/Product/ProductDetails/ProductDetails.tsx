@@ -47,8 +47,6 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
     addCart({ id, ...data });
   };
 
-  console.log(data);
-
   return (
     <ProductDetailsContainer>
       <TitlePrice namePrice={{ name: data?.name, price: data?.price }} />
