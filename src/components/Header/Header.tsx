@@ -24,8 +24,6 @@ export default function Header({ text, url }: HeaderProps) {
     setShowModal(true);
   };
 
-  console.log(showModal);
-
   return (
     <>
       <HeaderCont>
@@ -51,7 +49,8 @@ export default function Header({ text, url }: HeaderProps) {
           </>
         </RegisterBox>
       </HeaderCont>
-      {showModal && createPortal(<CartModal />, document.body)}
+      {showModal &&
+        createPortal(<CartModal setShowModal={setShowModal} />, document.body)}
       <Outlet />
     </>
   );

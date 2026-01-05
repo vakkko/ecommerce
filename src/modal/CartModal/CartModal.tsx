@@ -1,18 +1,25 @@
 import Button from "../../components/Button/Button";
-import { Sidebar } from "./cartModal.styled";
+import { EmptyCartContainer, Sidebar, TitleAndClose } from "./cartModal.styled";
+import type { CartModalProps } from "./cartModal.types";
 
-export default function CartModal() {
+export default function CartModal({ setShowModal }: CartModalProps) {
+  const onClose = () => {
+    setShowModal(false);
+  };
   return (
     <Sidebar>
-      <div>
+      <TitleAndClose>
         <h3>Shopping cart (0)</h3>
-        <img src="./images/close.svg" alt="close" />
-      </div>
-      <div>
+        <img onClick={onClose} src="./images/close.svg" alt="close" />
+      </TitleAndClose>
+      <EmptyCartContainer>
         <img src="./images/cart-big.png" alt="Orange cart" />
-        <p>You’ve got nothing in your cart just yet...</p>
-        <Button children="You’ve got nothing in your cart just yet..." />
-      </div>
+        <div>
+          <span>Ooops!</span>
+          <p>You’ve got nothing in your cart just yet...</p>
+        </div>
+        <Button children="Start shopping" />
+      </EmptyCartContainer>
     </Sidebar>
   );
 }
