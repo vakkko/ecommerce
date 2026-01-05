@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import CartModal from "../../modal/CartModal/CartModal";
+import Overlay from "../../modal/Overlay/Overlay";
 
 export default function Header({ text, url }: HeaderProps) {
   const avatar = useSelector(selectAvatar);
@@ -22,6 +23,10 @@ export default function Header({ text, url }: HeaderProps) {
 
   const handleCartClick = () => {
     setShowModal(true);
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
   };
 
   return (
@@ -49,8 +54,12 @@ export default function Header({ text, url }: HeaderProps) {
           </>
         </RegisterBox>
       </HeaderCont>
-      {showModal &&
-        createPortal(<CartModal setShowModal={setShowModal} />, document.body)}
+      {showModal && (
+        <>
+          {createPortal(<CartModal handleClose={handleClose} />, document.body)}
+          <Overlay handleClose={handleClose} />
+        </>
+      )}
       <Outlet />
     </>
   );
