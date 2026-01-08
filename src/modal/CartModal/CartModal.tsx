@@ -1,8 +1,14 @@
+import { useGetCartItemsQuery } from "../../store/services/cartApi/cartApi";
+
 import Button from "../../components/Button/Button";
-import { EmptyCartContainer, Sidebar, TitleAndClose } from "./cartModal.styled";
+
 import type { CartModalProps } from "./cartModal.types";
 
+import { EmptyCartContainer, Sidebar, TitleAndClose } from "./cartModal.styled";
+
 export default function CartModal({ handleClose }: CartModalProps) {
+  const { data } = useGetCartItemsQuery();
+
   return (
     <Sidebar>
       <TitleAndClose>

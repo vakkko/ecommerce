@@ -9,7 +9,10 @@ import Details from "./Details/Details";
 
 import { useParams } from "react-router";
 
-import { useAddToCartMutation } from "../../../store/services/cartApi";
+import {
+  useAddToCartMutation,
+  useGetCartItemsQuery,
+} from "../../../store/services/cartApi/cartApi";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -39,11 +42,13 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
   const { id } = useParams();
 
   const [addCart] = useAddToCartMutation();
+  const { refetch } = useGetCartItemsQuery();
 
   const selectedSize = watch("size");
   const selectedQuantity = watch("quantity");
 
   const onSubmit: SubmitHandler<InputValues> = (data) => {
+    refetch();
     addCart({ id, ...data });
   };
 
