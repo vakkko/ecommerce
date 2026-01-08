@@ -10,7 +10,7 @@ export default function CartModal({ handleClose }: CartModalProps) {
         <img onClick={handleClose} src="./images/close.svg" alt="close" />
       </TitleAndClose>
       <EmptyCartContainer>
-        <img src="./images/cart-big.png" alt="Orange cart" />
+        <img src="/images/cart-big.png" alt="Orange cart" />
         <div>
           <span>Ooops!</span>
           <p>You’ve got nothing in your cart just yet...</p>

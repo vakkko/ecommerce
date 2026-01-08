@@ -32,16 +32,18 @@ export default function Header({ text, url }: HeaderProps) {
   return (
     <>
       <HeaderCont>
-        <LogoBox>
-          <img src="/images/handEye.png" alt="hand eye " />
-          <h1>RedSeam Clothing</h1>
-        </LogoBox>
+        <Link to="/products?page=1">
+          <LogoBox>
+            <img src="/images/handEye.png" alt="hand eye " />
+            <h1>RedSeam Clothing</h1>
+          </LogoBox>
+        </Link>
         <RegisterBox>
           <>
             {!url && (
               <CartImage
                 onClick={handleCartClick}
-                src="./images/cart.svg"
+                src="/images/cart.svg"
                 alt="cart"
               />
             )}
