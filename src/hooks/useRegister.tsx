@@ -30,7 +30,7 @@ const useRegister = () => {
     try {
       const result = await registerUser(formData).unwrap();
 
-      localStorage.setItem("token", result.token);
+      sessionStorage.setItem("token", result.token);
       navigate("/products?page=1");
     } catch (error: unknown) {
       const err = error as RTKError;
