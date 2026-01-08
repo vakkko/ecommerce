@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { authApiSlice } from "./services/authApi";
 import { productApiSlice } from "./services/productApi/productApi";
-import { cartApi } from "./services/cartApi";
+import { cartApi } from "./services/cartApi/cartApi";
 
 import authReducer from "./slices/AuthSlice/authSlice";
 import activeImg from "./slices/ActiveImgSlice/activeImageSlice";

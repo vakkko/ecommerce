@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BASE_URL } from "../../consts/api.const";
+import { BASE_URL } from "../../../consts/api.const";
+import type { CartItem } from "./cartApi.types";
 
 export const cartApi = createApi({
   reducerPath: "cartApi",
@@ -21,7 +22,12 @@ export const cartApi = createApi({
         body: { color, quantity, size },
       }),
     }),
+    getCartItems: builder.query<CartItem[], void>({
+      query: () => ({
+        url: "/cart",
+      }),
+    }),
   }),
 });
 
-export const { useAddToCartMutation } = cartApi;
+export const { useAddToCartMutation, useGetCartItemsQuery } = cartApi;
