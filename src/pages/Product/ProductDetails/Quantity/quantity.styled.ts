@@ -10,16 +10,18 @@ export const QuantityBox = styled.div`
   & > div {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 22px;
     margin-top: 16px;
+    border: 1px solid var(--grey2);
+    border-radius: 90px;
+    width: fit-content;
+    padding: 8px 16px;
   }
 
   & > div > input {
-    width: 70px;
-    height: 42px;
     text-align: center;
-    border: 1px solid var(--grey2);
-    border-radius: 10px;
+    width: 25px;
+    border: none;
     font-family: Poppins;
     font-size: 16px;
     line-height: 100%;
@@ -33,6 +35,11 @@ export const QuantityBox = styled.div`
   }
 
   & > div > button {
-    font-size: 22px;
+    font-size: 25px;
+    font-weight: 500;
+
+    &:first-child {
+      color: var(--grey2);
+    }
   }
 `;
