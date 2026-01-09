@@ -1,0 +1,37 @@
+import styled from "styled-components";
+
+export const PaymentContainer = styled.div`
+  margin-top: 331px;
+  display: flex;
+  flex-direction: column;
+
+  & > button {
+    margin-top: 102px;
+  }
+
+  & > dl {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  & > dl > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      color: var(--darkBlue2);
+      font-size: 16px;
+      line-height: 100%;
+    }
+
+    &:last-child {
+      color: var(--darkBlue);
+      font-family: Poppins;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 100%;
+    }
+  }
+`;
