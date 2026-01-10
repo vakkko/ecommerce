@@ -15,7 +15,7 @@ export default function CartModal({ handleClose }: CartModalProps) {
     <Sidebar>
       <TitleAndClose>
         <h3>Shopping cart ({isEmpty ? "0" : data.length})</h3>
-        <img onClick={handleClose} src="./images/close.svg" alt="close" />
+        <img onClick={handleClose} src="/images/close.svg" alt="close" />
       </TitleAndClose>
       {isEmpty ? (
         <EmptyCart handleClose={handleClose} />

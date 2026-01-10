@@ -9,7 +9,20 @@ import {
   Quantity,
 } from "./cartItemsList.styled";
 
+import {
+  useDeleteCartItemMutation,
+  useGetCartItemsQuery,
+} from "../../../../store/services/cartApi/cartApi";
+
 export default function CartItemsList({ data }: { data: CartItem[] }) {
+  const [deleteItem] = useDeleteCartItemMutation();
+  const { refetch } = useGetCartItemsQuery();
+
+  const handleItemDelete = (id: number, color: string, size: string) => {
+    deleteItem({ id, color, size });
+    refetch();
+  };
+
   return (
     <ItemsList>
       {data.map((item, index) => (
@@ -30,7 +43,11 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
             </ItemDetails>
             <PriceRemove>
               <span>$ {item.price}</span>
-              <button>Remove</button>
+              <button
+                onClick={() => handleItemDelete(item.id, item.color, item.size)}
+              >
+                Remove
+              </button>
             </PriceRemove>
           </ItemDetailsContainer>
         </li>
