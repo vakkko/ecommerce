@@ -13,6 +13,7 @@ import {
   useDeleteCartItemMutation,
   useGetCartItemsQuery,
 } from "../../../../store/services/cartApi/cartApi";
+import { useState } from "react";
 
 export default function CartItemsList({ data }: { data: CartItem[] }) {
   const [deleteItem] = useDeleteCartItemMutation();
@@ -23,9 +24,27 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
     refetch();
   };
 
+  const [items, setItems] = useState(data);
+
+  const handleDecrease = (index: number) => {
+    setItems((prev) =>
+      prev.map((itm, i) =>
+        i === index ? { ...itm, quantity: itm.quantity - 1 } : itm
+      )
+    );
+  };
+
+  const handleIncrease = (index: number) => {
+    setItems((prev) =>
+      prev.map((itm, i) =>
+        i === index ? { ...itm, quantity: itm.quantity + 1 } : itm
+      )
+    );
+  };
+
   return (
     <ItemsList>
-      {data.map((item, index) => (
+      {items.map((item, index) => (
         <li key={index}>
           <ItemImageBox>
             <img src={item.cover_image} alt={item.description} />
@@ -36,9 +55,17 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
               <span>{item.color}</span>
               <span>{item.size}</span>
               <Quantity>
-                <img src="/images/minus.svg" alt="minus" />
+                <img
+                  onClick={() => handleDecrease(index)}
+                  src="/images/minus.svg"
+                  alt="minus"
+                />
                 <span>{item.quantity}</span>
-                <img src="/images/plus.svg" alt="plus" />
+                <img
+                  onClick={() => handleIncrease(index)}
+                  src="/images/plus.svg"
+                  alt="plus"
+                />
               </Quantity>
             </ItemDetails>
             <PriceRemove>
