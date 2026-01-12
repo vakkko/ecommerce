@@ -48,7 +48,6 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
       );
     }
   };
-  console.log(items);
   const handleIncrease = ({
     index,
     id,
@@ -77,33 +76,37 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
               <span>{item.color}</span>
               <span>{item.size}</span>
               <Quantity>
-                <img
-                  onClick={() =>
-                    handleDecrease({
-                      index,
-                      id: item.id,
-                      color: item.color,
-                      size: item.size,
-                      quantity: item.quantity,
-                    })
-                  }
-                  src="/images/minus.svg"
-                  alt="minus"
-                />
+                <button>
+                  <img
+                    onClick={() =>
+                      handleDecrease({
+                        index,
+                        id: item.id,
+                        color: item.color,
+                        size: item.size,
+                        quantity: item.quantity,
+                      })
+                    }
+                    src="/images/minus.svg"
+                    alt="minus"
+                  />
+                </button>
                 <span>{item.quantity}</span>
-                <img
-                  onClick={() =>
-                    handleIncrease({
-                      index,
-                      id: item.id,
-                      color: item.color,
-                      size: item.size,
-                      quantity: item.quantity,
-                    })
-                  }
-                  src="/images/plus.svg"
-                  alt="plus"
-                />
+                <button>
+                  <img
+                    onClick={() =>
+                      handleIncrease({
+                        index,
+                        id: item.id,
+                        color: item.color,
+                        size: item.size,
+                        quantity: item.quantity,
+                      })
+                    }
+                    src="/images/plus.svg"
+                    alt="plus"
+                  />
+                </button>
               </Quantity>
             </ItemDetails>
             <PriceRemove>
