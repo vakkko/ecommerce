@@ -64,6 +64,11 @@ export const Quantity = styled.div`
   padding: 4px 8px;
   width: fit-content;
 
+  & > button {
+    display: flex;
+    align-items: center;
+  }
+
   & > span {
     font-size: 12px;
     line-height: 100%;
