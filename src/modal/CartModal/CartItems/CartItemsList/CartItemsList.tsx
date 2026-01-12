@@ -1,3 +1,11 @@
+import { useState } from "react";
+
+import {
+  useDeleteCartItemMutation,
+  useGetCartItemsQuery,
+  useChangeCartQuantityMutation,
+} from "../../../../store/services/cartApi/cartApi";
+
 import type { CartItem } from "../../../../store/services/cartApi/cartApi.types";
 
 import {
@@ -8,33 +16,47 @@ import {
   PriceRemove,
   Quantity,
 } from "./cartItemsList.styled";
-
-import {
-  useDeleteCartItemMutation,
-  useGetCartItemsQuery,
-} from "../../../../store/services/cartApi/cartApi";
-import { useState } from "react";
+import type { ChangeItemParams, DeleteItemParams } from "./cartItemsList.types";
 
 export default function CartItemsList({ data }: { data: CartItem[] }) {
   const [deleteItem] = useDeleteCartItemMutation();
   const { refetch } = useGetCartItemsQuery();
 
-  const handleItemDelete = (id: number, color: string, size: string) => {
+  const [changeQuantity] = useChangeCartQuantityMutation();
+
+  const handleItemDelete = ({ id, color, size }: DeleteItemParams) => {
     deleteItem({ id, color, size });
     refetch();
   };
 
   const [items, setItems] = useState(data);
 
-  const handleDecrease = (index: number) => {
-    setItems((prev) =>
-      prev.map((itm, i) =>
-        i === index ? { ...itm, quantity: itm.quantity - 1 } : itm
-      )
-    );
-  };
+  const handleDecrease = ({
+    index,
+    id,
+    color,
+    size,
+    quantity,
+  }: ChangeItemParams) => {
+    if (quantity > 1) {
+      changeQuantity({ id, color, size, quantity });
 
-  const handleIncrease = (index: number) => {
+      setItems((prev) =>
+        prev.map((itm, i) =>
+          i === index ? { ...itm, quantity: itm.quantity - 1 } : itm
+        )
+      );
+    }
+  };
+  console.log(items);
+  const handleIncrease = ({
+    index,
+    id,
+    color,
+    size,
+    quantity,
+  }: ChangeItemParams) => {
+    changeQuantity({ id, color, size, quantity });
     setItems((prev) =>
       prev.map((itm, i) =>
         i === index ? { ...itm, quantity: itm.quantity + 1 } : itm
@@ -56,13 +78,29 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
               <span>{item.size}</span>
               <Quantity>
                 <img
-                  onClick={() => handleDecrease(index)}
+                  onClick={() =>
+                    handleDecrease({
+                      index,
+                      id: item.id,
+                      color: item.color,
+                      size: item.size,
+                      quantity: item.quantity,
+                    })
+                  }
                   src="/images/minus.svg"
                   alt="minus"
                 />
                 <span>{item.quantity}</span>
                 <img
-                  onClick={() => handleIncrease(index)}
+                  onClick={() =>
+                    handleIncrease({
+                      index,
+                      id: item.id,
+                      color: item.color,
+                      size: item.size,
+                      quantity: item.quantity,
+                    })
+                  }
                   src="/images/plus.svg"
                   alt="plus"
                 />
@@ -71,7 +109,13 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
             <PriceRemove>
               <span>$ {item.price}</span>
               <button
-                onClick={() => handleItemDelete(item.id, item.color, item.size)}
+                onClick={() =>
+                  handleItemDelete({
+                    id: item.id,
+                    color: item.color,
+                    size: item.size,
+                  })
+                }
               >
                 Remove
               </button>
