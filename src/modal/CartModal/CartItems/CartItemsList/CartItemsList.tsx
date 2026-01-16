@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import ItemImage from "./ItemImage/ItemImage";
+
 import {
   useDeleteCartItemMutation,
   useGetCartItemsQuery,
@@ -7,16 +9,15 @@ import {
 } from "../../../../store/services/cartApi/cartApi";
 
 import type { CartItem } from "../../../../store/services/cartApi/cartApi.types";
+import type { ChangeItemParams, DeleteItemParams } from "./cartItemsList.types";
 
 import {
   ItemDetails,
   ItemDetailsContainer,
-  ItemImageBox,
   ItemsList,
   PriceRemove,
   Quantity,
 } from "./cartItemsList.styled";
-import type { ChangeItemParams, DeleteItemParams } from "./cartItemsList.types";
 
 export default function CartItemsList({ data }: { data: CartItem[] }) {
   const [deleteItem] = useDeleteCartItemMutation();
@@ -67,9 +68,10 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
     <ItemsList>
       {items.map((item, index) => (
         <li key={index}>
-          <ItemImageBox>
-            <img src={item.cover_image} alt={item.description} />
-          </ItemImageBox>
+          <ItemImage
+            cover_image={item.cover_image}
+            description={item.description}
+          />
           <ItemDetailsContainer>
             <ItemDetails>
               <h4>{item.name}</h4>
