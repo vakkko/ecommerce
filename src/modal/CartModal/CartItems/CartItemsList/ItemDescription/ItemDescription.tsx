@@ -1,5 +1,6 @@
-import { Heading, ItemAtribute } from "./itemDescription.styled";
 import type { ItemDescriptionProps } from "./itemDescription.types";
+
+import { Heading, ItemAtribute } from "./itemDescription.styled";
 
 export default function ItemDescription({
   name,
