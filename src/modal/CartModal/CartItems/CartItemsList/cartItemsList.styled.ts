@@ -25,9 +25,3 @@ export const ItemDetails = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-
-export const PriceRemove = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
