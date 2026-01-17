@@ -18,6 +18,7 @@ import {
   PriceRemove,
   Quantity,
 } from "./cartItemsList.styled";
+import ItemDescription from "./ItemDescription/ItemDescription";
 
 export default function CartItemsList({ data }: { data: CartItem[] }) {
   const [deleteItem] = useDeleteCartItemMutation();
@@ -74,9 +75,11 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
           />
           <ItemDetailsContainer>
             <ItemDetails>
-              <h4>{item.name}</h4>
-              <span>{item.color}</span>
-              <span>{item.size}</span>
+              <ItemDescription
+                name={item.name}
+                color={item.color}
+                size={item.size}
+              />
               <Quantity>
                 <button>
                   <img

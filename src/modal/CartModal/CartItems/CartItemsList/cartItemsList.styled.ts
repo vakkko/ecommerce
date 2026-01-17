@@ -24,23 +24,6 @@ export const ItemDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  & > h4 {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 100%;
-    color: var(--darkBlue);
-
-    &::first-letter {
-      text-transform: uppercase;
-    }
-  }
-
-  & > span {
-    font-size: 12px;
-    line-height: 100%;
-    color: var(--darkBlue2);
-  }
 `;
 
 export const Quantity = styled.div`
