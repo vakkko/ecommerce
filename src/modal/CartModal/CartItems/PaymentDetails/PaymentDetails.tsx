@@ -1,4 +1,4 @@
-import Button from "../../../../components/Button/Button";
+import { Link } from "react-router";
 
 import type { PaymentDetailsProps } from "./paymentDetails.types";
 
@@ -23,7 +23,7 @@ export default function PaymentDetails({ itemsSubtotal }: PaymentDetailsProps) {
           <dd>{total}</dd>
         </div>
       </dl>
-      <Button>Go to checkout</Button>
+      <Link to="/checkout">Go to checkout</Link>
     </PaymentContainer>
   );
 }

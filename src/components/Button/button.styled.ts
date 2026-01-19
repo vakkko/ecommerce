@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledButton = styled.button`
+export const buttonStyles = css`
   color: white;
   background-color: var(--red);
   padding: 14px 0;
@@ -11,4 +11,8 @@ export const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 5px;
+`;
+
+export const StyledButton = styled.button`
+  ${buttonStyles}
 `;

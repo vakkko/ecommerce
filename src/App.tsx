@@ -10,6 +10,7 @@ import Product from "./pages/Product/Product";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Header from "./components/Header/Header";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route index element={<Products />} />
             <Route path=":id" element={<Product />} />
           </Route>
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </HashRouter>
     </Provider>
