@@ -3,6 +3,7 @@ import type { AuthState } from "./authSlice.types";
 
 const initialState: AuthState = {
   avatar: undefined,
+  email: undefined,
 };
 
 const authSlice = createSlice({
@@ -12,8 +13,11 @@ const authSlice = createSlice({
     setAvatarImg: (state, action: PayloadAction<string>) => {
       state.avatar = action.payload;
     },
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
   },
 });
 
-export const { setAvatarImg } = authSlice.actions;
+export const { setAvatarImg, setEmail } = authSlice.actions;
 export default authSlice.reducer;

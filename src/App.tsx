@@ -22,17 +22,18 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/products"
             element={
               <ProtectedRoute>
                 <Header />
               </ProtectedRoute>
             }
           >
-            <Route index element={<Products />} />
-            <Route path=":id" element={<Product />} />
+            <Route path="/products">
+              <Route index element={<Products />} />
+              <Route path=":id" element={<Product />} />
+            </Route>
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
-          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </HashRouter>
     </Provider>
