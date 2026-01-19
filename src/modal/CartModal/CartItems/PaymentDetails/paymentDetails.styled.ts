@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { buttonStyles } from "../../../../components/Button/button.styled";
 
 export const PaymentContainer = styled.div`
   margin-top: 331px;
@@ -33,5 +34,10 @@ export const PaymentContainer = styled.div`
       font-size: 20px;
       line-height: 100%;
     }
+  }
+
+  & > a {
+    ${buttonStyles}
+    margin-top: 102px;
   }
 `;
