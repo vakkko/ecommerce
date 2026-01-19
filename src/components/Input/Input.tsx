@@ -13,10 +13,11 @@ export default function Input<T extends FieldValues>({
   register,
   errors,
   watch,
+  fullWidth,
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [type, setType] = useState<string | undefined>(() =>
-    icon ? "password" : undefined
+    icon ? "password" : undefined,
   );
 
   const handleLabelClick = () => {
@@ -41,7 +42,7 @@ export default function Input<T extends FieldValues>({
   const errorMessage = fieldError?.message ? fieldError.message : undefined;
 
   return (
-    <InputCont>
+    <InputCont $fullWidth={fullWidth}>
       {showLabel && (
         <label onClick={handleLabelClick} htmlFor={placeholder}>
           {placeholder} <span>*</span>

@@ -1,11 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const InputCont = styled.div`
+export const InputCont = styled.div<{ $fullWidth: boolean | undefined }>`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 50px;
+  ${(props) =>
+    props.$fullWidth &&
+    css`
+      grid-column: span 2;
+    `}
 
   & > input {
     width: 100%;

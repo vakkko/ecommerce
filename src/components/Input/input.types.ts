@@ -13,4 +13,5 @@ export interface InputProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   errors?: FieldErrors<T>;
   watch: UseFormWatch<T>;
+  fullWidth?: boolean;
 }

@@ -1,9 +1,11 @@
-import Header from "../../components/Header/Header";
+import OrderDetails from "./OrderDetails/OrderDetails";
+
+import { CheckoutContainer } from "./checkout.styled";
 
 export default function Checkout() {
   return (
-    <div>
-      <Header />
-    </div>
+    <CheckoutContainer>
+      <OrderDetails />
+    </CheckoutContainer>
   );
 }
