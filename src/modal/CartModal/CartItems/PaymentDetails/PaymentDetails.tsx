@@ -4,7 +4,10 @@ import type { PaymentDetailsProps } from "./paymentDetails.types";
 
 import { PaymentContainer } from "./paymentDetails.styled";
 
-export default function PaymentDetails({ itemsSubtotal }: PaymentDetailsProps) {
+export default function PaymentDetails({
+  itemsSubtotal,
+  handleClose,
+}: PaymentDetailsProps) {
   const delivery = 5;
   const total = delivery + itemsSubtotal;
   return (
@@ -23,7 +26,9 @@ export default function PaymentDetails({ itemsSubtotal }: PaymentDetailsProps) {
           <dd>{total}</dd>
         </div>
       </dl>
-      <Link to="/checkout">Go to checkout</Link>
+      <Link onClick={handleClose} to="/checkout">
+        Go to checkout
+      </Link>
     </PaymentContainer>
   );
 }
