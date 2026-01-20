@@ -20,7 +20,7 @@ export default function CartModal({ handleClose }: CartModalProps) {
       {isEmpty ? (
         <EmptyCart handleClose={handleClose} />
       ) : (
-        <CartItems data={data} />
+        <CartItems handleClose={handleClose} data={data} />
       )}
     </Sidebar>
   );
