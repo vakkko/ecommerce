@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useLoginUserMutation } from "../store/services/authApi";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
 import type { LoginErr } from "../pages/Login/LoginBox/loginBox.types";
-import { setAvatarImg, setEmail } from "../store/slices/AuthSlice/authSlice";
+import { setAvatarImg } from "../store/slices/AuthSlice/authSlice";
 import { useDispatch } from "react-redux";
 
 const useLogin = () => {
@@ -23,7 +23,7 @@ const useLogin = () => {
     try {
       const response = await loginUser(formData).unwrap();
       dispatch(setAvatarImg(response.user.avatar));
-      dispatch(setEmail(response.user.email));
+      sessionStorage.setItem("email", response.user.email);
       sessionStorage.setItem("token", response.token);
       navigate("/products?page=1");
     } catch (error: unknown) {

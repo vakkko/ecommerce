@@ -4,7 +4,6 @@ export const ItemsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 36px;
-  margin-top: 63px;
 
   & > li {
     display: flex;

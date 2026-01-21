@@ -7,11 +7,12 @@ import { PaymentContainer } from "./paymentDetails.styled";
 export default function PaymentDetails({
   itemsSubtotal,
   handleClose,
+  checkout,
 }: PaymentDetailsProps) {
   const delivery = 5;
   const total = delivery + itemsSubtotal;
   return (
-    <PaymentContainer>
+    <PaymentContainer $checkout={checkout}>
       <dl>
         <div>
           <dt>Items subtotal</dt>
@@ -26,8 +27,8 @@ export default function PaymentDetails({
           <dd>{total}</dd>
         </div>
       </dl>
-      <Link onClick={handleClose} to="/checkout">
-        Go to checkout
+      <Link onClick={handleClose} to={checkout ? "#" : "/checkout"}>
+        {checkout ? "Pay" : "Go to checkout"}
       </Link>
     </PaymentContainer>
   );

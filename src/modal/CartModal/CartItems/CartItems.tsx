@@ -1,15 +1,24 @@
+import { CartItemsContainer } from "./cartItems.styled";
 import type { CartItemsProps } from "./cartItems.types";
 import CartItemsList from "./CartItemsList/CartItemsList";
 
 import PaymentDetails from "./PaymentDetails/PaymentDetails";
 
-export default function CartItems({ data, handleClose }: CartItemsProps) {
+export default function CartItems({
+  data,
+  handleClose,
+  checkout,
+}: CartItemsProps) {
   const itemsSubtotal = data?.reduce((acc, item) => acc + item.total_price, 0);
 
   return (
-    <>
+    <CartItemsContainer $checkout={checkout}>
       <CartItemsList data={data} />
-      <PaymentDetails handleClose={handleClose} itemsSubtotal={itemsSubtotal} />
-    </>
+      <PaymentDetails
+        checkout={checkout}
+        handleClose={handleClose}
+        itemsSubtotal={itemsSubtotal}
+      />
+    </CartItemsContainer>
   );
 }

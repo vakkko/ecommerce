@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import { buttonStyles } from "../../../../components/Button/button.styled";
 
-export const PaymentContainer = styled.div`
-  margin-top: 331px;
+export const PaymentContainer = styled.div<{ $checkout?: boolean }>`
   display: flex;
   flex-direction: column;
-
-  & > button {
-    margin-top: 102px;
-  }
 
   & > dl {
     display: flex;
@@ -38,6 +33,6 @@ export const PaymentContainer = styled.div`
 
   & > a {
     ${buttonStyles}
-    margin-top: 102px;
+    margin-top: ${(props) => (props.$checkout ? "81px" : "102px")};
   }
 `;
