@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export const OrderDetailsContainer = styled.div`
+export const DetailsContainer = styled.div`
   width: 58.8%;
   background-color: var(--grey);
   border-radius: 16px;
   padding-top: 72px;
   padding-left: 47px;
-  margin-top: 42px;
 
   & > h2 {
     font-weight: 500;
     font-size: 22px;
     line-height: 100%;
+    margin-bottom: 46px;
   }
 
   & > div {

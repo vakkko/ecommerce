@@ -1,4 +1,5 @@
 export interface PaymentDetailsProps {
   itemsSubtotal: number;
-  handleClose: () => void;
+  handleClose?: () => void;
+  checkout?: boolean;
 }

@@ -1,3 +1,4 @@
 export interface CartModalProps {
-  handleClose: () => void;
+  handleClose?: () => void;
+  checkout?: boolean;
 }
