@@ -7,13 +7,16 @@ import {
   priceFilterMissmatch,
   numberType,
 } from "../messages/validationMessages";
-import { PASSWORD_VALIDATION, USERNAME_VALIDATION } from "../regex/regex";
+import {
+  ADDRESS_VALIDATION,
+  PASSWORD_VALIDATION,
+  USERNAME_VALIDATION,
+} from "../regex/regex";
 
 const emailSchema = yup
   .string()
   .required(required("Email"))
-  .email(invalidPattern.email)
-  .required(required("Email"));
+  .email(invalidPattern.email);
 
 const passwordSchema = yup
   .string()
@@ -65,8 +68,19 @@ export const filterByPriceSchema = yup
     return from <= to;
   });
 
-export const ProductDetailsSchema = yup.object({
+export const productDetailsSchema = yup.object({
   color: yup.string().required(),
   size: yup.string().required(),
   quantity: yup.number().required(),
+});
+
+export const orderDetailsSchema = yup.object({
+  name: yup.string().required(required("Name")),
+  surname: yup.string().required(required("Surname")),
+  email: emailSchema,
+  address: yup
+    .string()
+    .required()
+    .matches(ADDRESS_VALIDATION, invalidPattern.addressValidation),
+  zip_code: yup.string().required(required("Zip Code")),
 });

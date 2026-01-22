@@ -14,7 +14,7 @@ export const DetailsContainer = styled.div`
     margin-bottom: 46px;
   }
 
-  & > div {
+  & > form {
     width: 50%;
     display: grid;
     grid-template-columns: 1fr 1fr;

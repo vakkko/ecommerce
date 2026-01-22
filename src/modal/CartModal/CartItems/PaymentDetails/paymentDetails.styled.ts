@@ -31,8 +31,12 @@ export const PaymentContainer = styled.div<{ $checkout?: boolean }>`
     }
   }
 
+  & > a,
+  & > button {
+    margin-top: ${(props) => (props.$checkout ? "81px" : "102px")};
+  }
+
   & > a {
     ${buttonStyles}
-    margin-top: ${(props) => (props.$checkout ? "81px" : "102px")};
   }
 `;

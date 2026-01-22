@@ -2,14 +2,16 @@ import { useGetCartItemsQuery } from "../../store/services/cartApi/cartApi";
 
 import type { CartModalProps } from "./cartModal.types";
 
-import { Sidebar, TitleAndClose } from "./cartModal.styled";
 import EmptyCart from "./EmptyCart/EmptyCart";
 import CartItems from "./CartItems/CartItems";
+
+import { Sidebar, TitleAndClose } from "./cartModal.styled";
 
 export default function CartModal({ handleClose, checkout }: CartModalProps) {
   const { data } = useGetCartItemsQuery();
 
   const isEmpty = !data || data.length === 0;
+
   return (
     <Sidebar $checkout={checkout}>
       {!checkout && (
