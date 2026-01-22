@@ -5,6 +5,7 @@ export const invalidPattern = {
     "Username can only contain letters, numbers, and special characters",
   email: "Please enter a valid email address",
   spaceValidation: "Password cannot contain spaces",
+  addressValidation: "Address should contain only letters and digits",
 };
 
 export const lengthMessages = {

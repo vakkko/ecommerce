@@ -4,6 +4,15 @@ import type { PaymentDetailsProps } from "./paymentDetails.types";
 
 import { PaymentContainer } from "./paymentDetails.styled";
 
+import Button from "../../../../components/Button/Button";
+import {
+  useFormContext,
+  type FieldValues,
+  type SubmitHandler,
+} from "react-hook-form";
+
+import { useCartCheckoutMutation } from "../../../../store/services/cartApi/cartApi";
+
 export default function PaymentDetails({
   itemsSubtotal,
   handleClose,
@@ -11,6 +20,13 @@ export default function PaymentDetails({
 }: PaymentDetailsProps) {
   const delivery = 5;
   const total = delivery + itemsSubtotal;
+
+  const { handleSubmit } = useFormContext();
+  const [payCheckout] = useCartCheckoutMutation();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    payCheckout(data);
+  };
   return (
     <PaymentContainer $checkout={checkout}>
       <dl>
@@ -27,9 +43,15 @@ export default function PaymentDetails({
           <dd>{total}</dd>
         </div>
       </dl>
-      <Link onClick={handleClose} to={checkout ? "#" : "/checkout"}>
-        {checkout ? "Pay" : "Go to checkout"}
-      </Link>
+      {checkout ? (
+        <Button handleSubmit={handleSubmit(onSubmit)} type="submit">
+          Pay
+        </Button>
+      ) : (
+        <Link onClick={handleClose} to={"/checkout"}>
+          "Go to checkout"
+        </Link>
+      )}
     </PaymentContainer>
   );
 }

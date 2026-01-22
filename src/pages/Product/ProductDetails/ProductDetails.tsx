@@ -16,7 +16,7 @@ import {
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { ProductDetailsSchema } from "../../../validations/schemas/schemas";
+import { productDetailsSchema } from "../../../validations/schemas/schemas";
 
 import type { InputValues } from "./productDetails.types";
 import type { ProductDetailsProps } from "./productDetails.types";
@@ -33,7 +33,7 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
     watch,
     formState: { errors },
   } = useForm<InputValues>({
-    resolver: yupResolver(ProductDetailsSchema),
+    resolver: yupResolver(productDetailsSchema),
     defaultValues: {
       quantity: 1,
     },
