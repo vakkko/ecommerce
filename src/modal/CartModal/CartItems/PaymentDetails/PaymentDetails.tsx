@@ -21,7 +21,7 @@ export default function PaymentDetails({
   const delivery = 5;
   const total = delivery + itemsSubtotal;
 
-  const { handleSubmit } = useFormContext();
+  const { handleSubmit } = useFormContext() ?? "";
   const [payCheckout] = useCartCheckoutMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -49,7 +49,7 @@ export default function PaymentDetails({
         </Button>
       ) : (
         <Link onClick={handleClose} to={"/checkout"}>
-          "Go to checkout"
+          Go to checkout
         </Link>
       )}
     </PaymentContainer>

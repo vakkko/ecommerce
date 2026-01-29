@@ -10,6 +10,7 @@ export default function OrderDetails() {
     watch,
     formState: { errors },
   } = useFormContext();
+
   return (
     <DetailsContainer>
       <h2>Order details</h2>
