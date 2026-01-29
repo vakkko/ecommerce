@@ -82,5 +82,8 @@ export const orderDetailsSchema = yup.object({
     .string()
     .required()
     .matches(ADDRESS_VALIDATION, invalidPattern.addressValidation),
-  zip_code: yup.string().required(required("Zip Code")),
+  zip_code: yup
+    .number()
+    .required(required("Zip Code"))
+    .typeError(numberType("Zip code")),
 });
