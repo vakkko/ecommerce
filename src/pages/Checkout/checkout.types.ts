@@ -3,5 +3,5 @@ export type FormValues = {
   surname: string;
   email: string;
   address: string;
-  zip_code: string;
+  zip_code: number;
 };

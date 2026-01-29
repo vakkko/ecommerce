@@ -54,7 +54,7 @@ export const cartApi = createApi({
           surname,
           email,
           address,
-          zip_code,
+          zip_code: String(zip_code),
         },
       }),
     }),
