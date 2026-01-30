@@ -10,7 +10,7 @@ import {
 } from "react-hook-form";
 
 import Button from "../../../../components/Button/Button";
-import Congredulation from "../../../Congredulation/Congredulation";
+import Congredulation from "../../../Congredulation/Congretulation";
 
 import { useCartCheckoutMutation } from "../../../../store/services/cartApi/cartApi";
 
