@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Button from "../../components/Button/Button";
 import HeadingText from "../../components/HeadingText/HeadingText";
 
-import { CongratsContainer, CongratsMessage } from "./congredulation.styles";
+import { CongratsContainer, CongratsMessage } from "./congretulation.styles";
 
 export default function Congredulation() {
   const navigate = useNavigate();
