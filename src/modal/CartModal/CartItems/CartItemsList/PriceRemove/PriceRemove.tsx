@@ -1,7 +1,4 @@
-import {
-  useDeleteCartItemMutation,
-  useGetCartItemsQuery,
-} from "../../../../../store/services/cartApi/cartApi";
+import { useDeleteCartItemMutation } from "../../../../../store/services/cartApi/cartApi";
 
 import type { DeleteItemParams } from "../cartItemsList.types";
 import type { PriceRemoveProps } from "./priceRemove.types";
@@ -15,10 +12,8 @@ export default function PriceRemove({
   size,
 }: PriceRemoveProps) {
   const [deleteItem] = useDeleteCartItemMutation();
-  const { refetch } = useGetCartItemsQuery();
   const handleItemDelete = ({ id, color, size }: DeleteItemParams) => {
     deleteItem({ id, color, size });
-    refetch();
   };
   return (
     <PriceRemoveBox>
