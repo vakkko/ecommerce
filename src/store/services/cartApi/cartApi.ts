@@ -14,6 +14,7 @@ export const cartApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["Cart"],
   endpoints: (builder) => ({
     addToCart: builder.mutation({
       query: ({ id, color, quantity, size }) => ({
@@ -21,11 +22,13 @@ export const cartApi = createApi({
         method: "POST",
         body: { color, quantity, size },
       }),
+      invalidatesTags: ["Cart"],
     }),
     getCartItems: builder.query<CartItem[], void>({
       query: () => ({
         url: "/cart",
       }),
+      providesTags: ["Cart"],
     }),
     deleteCartItem: builder.mutation({
       query: ({ id, color, size }) => ({
@@ -33,6 +36,7 @@ export const cartApi = createApi({
         method: "DELETE",
         body: { color, size },
       }),
+      invalidatesTags: ["Cart"],
     }),
     changeCartQuantity: builder.mutation({
       query: ({ id, size, quantity, color }) => ({
@@ -44,6 +48,7 @@ export const cartApi = createApi({
           quantity,
         },
       }),
+      invalidatesTags: ["Cart"],
     }),
     cartCheckout: builder.mutation({
       query: ({ name, surname, email, address, zip_code }) => ({
