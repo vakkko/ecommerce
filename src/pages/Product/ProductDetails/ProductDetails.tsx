@@ -22,13 +22,16 @@ import {
   HorizontalLine,
   ProductDetailsContainer,
 } from "./productDetails.styled";
+import { useEffect } from "react";
 
 export default function ProductDetails({ data }: ProductDetailsProps) {
   const {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors },
+    reset,
+    getValues,
+    formState: { errors, isSubmitSuccessful },
   } = useForm<InputValues>({
     resolver: yupResolver(productDetailsSchema),
     defaultValues: {
@@ -46,6 +49,15 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     addCart({ id, ...data });
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        ...getValues(),
+        quantity: 1,
+      });
+    }
+  }, [isSubmitSuccessful, getValues, reset]);
 
   return (
     <ProductDetailsContainer>
