@@ -6,7 +6,6 @@ import type { QuantityProps } from "./quantity.types";
 import { QuantityBox } from "./quantity.styled";
 
 export default function Quantity({
-  setItems,
   index,
   quantity,
   id,
@@ -15,36 +14,13 @@ export default function Quantity({
 }: QuantityProps) {
   const [changeQuantity] = useChangeCartQuantityMutation();
 
-  const handleDecrease = ({
-    index,
-    id,
-    color,
-    size,
-    quantity,
-  }: ChangeItemParams) => {
+  const handleDecrease = ({ id, color, size, quantity }: ChangeItemParams) => {
     if (quantity > 1) {
-      changeQuantity({ id, color, size, quantity });
-
-      setItems((prev) =>
-        prev.map((itm, i) =>
-          i === index ? { ...itm, quantity: itm.quantity - 1 } : itm
-        )
-      );
+      changeQuantity({ id, color, size, quantity: quantity - 1 });
     }
   };
-  const handleIncrease = ({
-    index,
-    id,
-    color,
-    size,
-    quantity,
-  }: ChangeItemParams) => {
-    changeQuantity({ id, color, size, quantity });
-    setItems((prev) =>
-      prev.map((itm, i) =>
-        i === index ? { ...itm, quantity: itm.quantity + 1 } : itm
-      )
-    );
+  const handleIncrease = ({ id, color, size, quantity }: ChangeItemParams) => {
+    changeQuantity({ id, color, size, quantity: quantity + 1 });
   };
 
   return (

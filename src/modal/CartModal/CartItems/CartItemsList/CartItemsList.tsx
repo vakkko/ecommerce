@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import PriceRemove from "./PriceRemove/PriceRemove";
 import ItemImage from "./ItemImage/ItemImage";
 
@@ -13,9 +11,7 @@ import {
 import ItemDescription from "./ItemDescription/ItemDescription";
 import Quantity from "./Quantity/Quantity";
 
-export default function CartItemsList({ data }: { data: CartItem[] }) {
-  const [items, setItems] = useState(data);
-
+export default function CartItemsList({ data: items }: { data: CartItem[] }) {
   return (
     <ItemsList>
       {items.map((item, index) => (
@@ -32,7 +28,6 @@ export default function CartItemsList({ data }: { data: CartItem[] }) {
                 size={item.size}
               />
               <Quantity
-                setItems={setItems}
                 color={item.color}
                 id={item.id}
                 index={index}
