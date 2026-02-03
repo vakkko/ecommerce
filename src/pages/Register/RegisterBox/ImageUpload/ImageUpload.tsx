@@ -1,20 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import type { ImageUploadProps } from "./imageUpload.types";
+
 import {
   ImageUploadContainer,
   Circle,
   Avatar,
   UploadText,
 } from "./imageUpload.styled";
-import type { ImageUploadProps } from "./imageUpload.types";
 
 export default function ImageUpload({ setAvatar }: ImageUploadProps) {
   const [preview, setPreview] = useState<string>("");
+
   const handleRemoveClick = () => {
     setPreview("");
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+
+    if (!file?.type.startsWith("image/")) return;
     if (file) {
       setAvatar(file);
 
@@ -22,6 +27,12 @@ export default function ImageUpload({ setAvatar }: ImageUploadProps) {
       setPreview(objectUrl);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
 
   return (
     <ImageUploadContainer>
@@ -35,7 +46,7 @@ export default function ImageUpload({ setAvatar }: ImageUploadProps) {
       <UploadText>
         <label>
           Upload {preview ? "new" : "image"}
-          <input onChange={handleFileChange} type="file" />
+          <input accept="image/*" onChange={handleFileChange} type="file" />
         </label>
         {preview && <button onClick={handleRemoveClick}>Remove</button>}
       </UploadText>
