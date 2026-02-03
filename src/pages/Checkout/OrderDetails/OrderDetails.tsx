@@ -21,6 +21,7 @@ export default function OrderDetails() {
           register={register}
           watch={watch}
           errors={errors}
+          autocomplete="name"
         />
         <Input
           placeholder="Surname"
@@ -28,6 +29,7 @@ export default function OrderDetails() {
           register={register}
           watch={watch}
           errors={errors}
+          autocomplete="surname"
         />
         <Input
           placeholder="Email"
@@ -36,6 +38,7 @@ export default function OrderDetails() {
           watch={watch}
           fullWidth
           errors={errors}
+          autocomplete="email"
         />
         <Input
           placeholder="Address"
@@ -43,6 +46,7 @@ export default function OrderDetails() {
           register={register}
           watch={watch}
           errors={errors}
+          autocomplete="street-address"
         />
         <Input
           placeholder="Zip code"
@@ -50,6 +54,7 @@ export default function OrderDetails() {
           register={register}
           watch={watch}
           errors={errors}
+          autocomplete="postal-code"
         />
       </form>
     </DetailsContainer>

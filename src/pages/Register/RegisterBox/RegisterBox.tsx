@@ -48,6 +48,7 @@ function RegisterBox() {
           label="email"
           placeholder="Email"
           watch={watch}
+          autocomplete="email"
         />
         <Input
           errors={errors}
@@ -56,6 +57,7 @@ function RegisterBox() {
           placeholder="Password"
           icon
           watch={watch}
+          autocomplete="new-password"
         />
         <Input
           errors={errors}
@@ -64,6 +66,7 @@ function RegisterBox() {
           placeholder="Confirm password"
           icon
           watch={watch}
+          autocomplete="new-password"
         />
         {responseMsg &&
           responseMsg.map((err, i) => <ErrMsg key={i}>{err}</ErrMsg>)}

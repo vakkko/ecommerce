@@ -14,6 +14,7 @@ export default function Input<T extends FieldValues>({
   errors,
   watch,
   fullWidth,
+  autocomplete,
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [type, setType] = useState<string | undefined>(() =>
@@ -56,6 +57,7 @@ export default function Input<T extends FieldValues>({
           inputRef.current = el;
           register(label).ref(el);
         }}
+        autoComplete={autocomplete}
       />
       {icon && (
         <EyeImg onClick={handleEyeClick} src="/images/eye.png" alt="eye" />

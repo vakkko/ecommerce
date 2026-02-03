@@ -28,7 +28,7 @@ export const InputCont = styled.div<{ $fullWidth: boolean | undefined }>`
 
   & > label {
     position: absolute;
-    top: 8.5px;
+    top: 10.5px;
     left: 12px;
     color: var(--darkBlue2);
   }

@@ -29,6 +29,7 @@ export default function LoginBox() {
           label="email"
           placeholder="Email"
           watch={watch}
+          autocomplete="email"
         />
         <Input
           errors={errors}
@@ -37,6 +38,7 @@ export default function LoginBox() {
           placeholder="Password"
           icon
           watch={watch}
+          autocomplete="current-password"
         />
         {loginError && <ErrMsg>{loginError}</ErrMsg>}
         <ButtonBox>

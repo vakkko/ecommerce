@@ -14,4 +14,5 @@ export interface InputProps<T extends FieldValues> {
   errors?: FieldErrors<T>;
   watch: UseFormWatch<T>;
   fullWidth?: boolean;
+  autocomplete?: string;
 }
