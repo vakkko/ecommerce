@@ -14,7 +14,7 @@ const useRegister = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<RegisterFormData> = async (
-    data
+    data,
   ): Promise<void> => {
     const formData = new FormData();
 
@@ -31,7 +31,7 @@ const useRegister = () => {
       const result = await registerUser(formData).unwrap();
 
       sessionStorage.setItem("token", result.token);
-      navigate("/products?page=1");
+      navigate("/?page=1");
     } catch (error: unknown) {
       const err = error as RTKError;
       const errorsArr: string[] = Object.values(err?.data?.errors || {});

@@ -9,7 +9,7 @@ export default function Congredulation() {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/products");
+    navigate("/");
   };
 
   return (

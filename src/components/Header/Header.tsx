@@ -29,31 +29,27 @@ export default function Header({ text, url }: HeaderProps) {
     setShowModal(false);
   };
 
+  const authorized = sessionStorage.getItem("token");
+
+  console.log(avatar);
+
   return (
     <>
       <HeaderCont>
-        <Link to="/products?page=1">
+        <Link to="/?page=1">
           <LogoBox>
             <img src="/images/handEye.png" alt="hand eye " />
             <h1>RedSeam Clothing</h1>
           </LogoBox>
         </Link>
         <RegisterBox>
-          <>
-            {!url && (
-              <CartImage
-                onClick={handleCartClick}
-                src="/images/cart.svg"
-                alt="cart"
-              />
-            )}
-            {avatar ? (
-              <AvatarImg src={avatar} alt="user" />
-            ) : (
-              <img src="/images/user-icon.png" alt="user" />
-            )}
-            {url && <Link to={url}>{text}</Link>}
-          </>
+          <CartImage
+            onClick={handleCartClick}
+            src="/images/cart.svg"
+            alt="cart"
+          />
+          {avatar && <AvatarImg src={avatar} alt="user" />}
+          {url && !avatar && !authorized && <Link to={url}>{text}</Link>}
         </RegisterBox>
       </HeaderCont>
       {showModal && (

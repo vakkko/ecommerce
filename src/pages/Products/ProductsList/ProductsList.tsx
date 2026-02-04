@@ -13,7 +13,7 @@ export default function ProductsList({ data }: ProductsListProps) {
       {data &&
         data.data.map((product) => (
           <React.Fragment key={product.id}>
-            <Link to={String(product.id)}>
+            <Link to={`/product/${String(product.id)}`}>
               <ProductItem
                 cover_image={product.cover_image}
                 name={product.name}

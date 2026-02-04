@@ -1,5 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 
+import { useNavigate } from "react-router";
+
 import Button from "../../../components/Button/Button";
 import Colors from "./Colors/Colors";
 import Quantity from "./Quantity/Quantity";
@@ -46,8 +48,15 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
   const selectedSize = watch("size");
   const selectedQuantity = watch("quantity");
 
-  const onSubmit: SubmitHandler<InputValues> = (data) => {
-    addCart({ id, ...data });
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<InputValues> = async (data) => {
+    try {
+      await addCart({ id, ...data }).unwrap();
+    } catch (err) {
+      console.error(err);
+      navigate("/login");
+    }
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { HashRouter, Navigate, Route, Routes } from "react-router";
+import { HashRouter, Route, Routes } from "react-router";
 
 import { store } from "./store/store";
 import { Provider } from "react-redux";
@@ -14,29 +14,30 @@ import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   return (
-    <Provider store={store}>
-      <HashRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            element={
-              <ProtectedRoute>
-                <Header />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/products">
-              <Route index element={<Products />} />
-              <Route path=":id" element={<Product />} />
+    <>
+      <Provider store={store}>
+        <HashRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route element={<Header url="/login" text="Log in" />}>
+              <Route path="/" element={<Products />} />
+              <Route path="/product/:id" element={<Product />} />
             </Route>
-            <Route path="/checkout" element={<Checkout />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    </Provider>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <Header />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/checkout" element={<Checkout />} />
+            </Route>
+          </Routes>
+        </HashRouter>
+      </Provider>
+    </>
   );
 }
 

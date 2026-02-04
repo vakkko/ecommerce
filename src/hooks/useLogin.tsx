@@ -25,7 +25,7 @@ const useLogin = () => {
       dispatch(setAvatarImg(response.user.avatar));
       sessionStorage.setItem("email", response.user.email);
       sessionStorage.setItem("token", response.token);
-      navigate("/products?page=1");
+      navigate(-1);
     } catch (error: unknown) {
       const err = error as LoginErr;
       setLoginError(err.data.message);
