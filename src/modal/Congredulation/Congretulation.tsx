@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router";
 
+import { useGetCartItemsQuery } from "../../store/services/cartApi/cartApi";
+
 import Button from "../../components/Button/Button";
 import HeadingText from "../../components/HeadingText/HeadingText";
 
@@ -8,8 +10,11 @@ import { CongratsContainer, CongratsMessage } from "./congretulation.styles";
 export default function Congredulation() {
   const navigate = useNavigate();
 
+  const { refetch } = useGetCartItemsQuery();
+
   const handleNavigate = () => {
     navigate("/");
+    refetch();
   };
 
   return (
