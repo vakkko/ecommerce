@@ -3,6 +3,8 @@
 RedSeam Clothing is an e-commerce web application built as part of a Redberry challenge.  
 The application consumes a backend API provided by Redberry and allows users to browse products, view detailed information, and proceed through a simulated checkout flow.
 
+---
+
 ## Tech Stack
 
 - **React** – reusable UI components
@@ -50,6 +52,8 @@ If the user is not logged in, adding a product to the cart will **redirect to th
 
 ![Product page](./screenshots/product-page.png)
 
+---
+
 ### Login Page
 
 You can use the following demo credentials to skip registration:
@@ -60,6 +64,8 @@ You can use the following demo credentials to skip registration:
 After a successful login, the user is redirected back to the previously visited page.
 
 ![Login page](./screenshots/login-page.png)
+
+---
 
 ### Register Page
 
@@ -72,6 +78,8 @@ After successful registration, the user is redirected to the home page.
 
 ![Register page](./screenshots/register-page.png)
 
+---
+
 ### Cart Modal
 
 The cart modal is accessible from both the home page and product page.
@@ -82,6 +90,8 @@ The cart modal is accessible from both the home page and product page.
 
 ![Cart modal](./screenshots/cart-modal.png)
 
+---
+
 ### Checkout Page
 
 The checkout page includes multiple input fields.
@@ -91,6 +101,8 @@ The checkout page includes multiple input fields.
 
 ![Checkout page](./screenshots/checkout-page.png)
 
+---
+
 ### Congratulations Modal
 
 After submitting valid checkout data (payment is simulated), a congratulations modal appears.
@@ -98,6 +110,8 @@ After submitting valid checkout data (payment is simulated), a congratulations m
 Clicking Continue Shopping redirects the user to the home page.
 
 ![Congratulations modal](./screenshots/congratulation-modal.png)
+
+---
 
 ## What I Learned
 
@@ -109,10 +123,14 @@ Through this project, I strengthened my knowledge of:
 - Form validation with Yup
 - Component and unit testing with Vitest and React Testing Library (ongoing)
 
+---
+
 ## Future Improvements
 
 - Increase test coverage using Vitest and React Testing Library
 - Add integration tests for main user flows (authentication, cart, checkout)
+
+---
 
 ## Getting Started
 
